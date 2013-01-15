@@ -1,6 +1,6 @@
 Javalabra
 =========
 
-Vittu vähän sisältöä tähän.
+vähän sisältöä tähän.
 
 
