@@ -1,0 +1,20 @@
+
+Aihe: Kuntosalipäiväkirjajärjestelmä
+
+Toteutetaan järjestelmä johon käyttäjä pystyy suunnittelemaan kuntosalin harjoitteluohjelman järjestelmään ennalta asetettujen harjoitusten mukaan. Ohjelmassa voi myös ylläpitää päiväkirjaa. Päiväkirjaan voi lisätä päiväkohtaisesti oman harjoitusohjelman harjoituksia, ja lisäämään kullekin päivälle kuhunkin liikkeeseen tehdyt sarja- ja toistomäärät sekä käytetyt painot.
+Käyttäjä pystyy myös seuraamaan kehitystään erilaisista kuvaajista tiettyjen liikkeiden osalta.
+
+Järjestelmä voitaisiin myöhemmin siirtää myös esimerkiksi älypuhelimilla käytettäväksi aplikaatioksi.
+ 
+
+
+Käyttäjät: Innokas käpistelijä joka tarvitsee elektroniikkaa motivaattoriksi urheiluun
+
+Käyttäjän toiminnot:
+
+Ohjelmaan ei tarvitse erikseen kirjautua sisään, vaan jokaiseen asennettuun ohjelmaan tulee vain yksi profiili. Käyttäjä voi lisätä omat henkilökohtaiset tiedot: nimi, ikä, sukupuoli, paino yms.
+
+Käyttäjä voi luoda itselleen harjoitteluohjelman ja sisällyttää siihen useita eri treenejä. Kuhunkin treeniin sisällytetään järjestelmässä valmiina olevia harjoituksia.
+
+Treenin jälkeen tai sen aikana käyttäjä voi päiväkirjatyylisesti lisätä kuhunkin liikkeeseen kyseisenä päivänä tehdyt sarjat, toistomäärät sekä painot.
+
