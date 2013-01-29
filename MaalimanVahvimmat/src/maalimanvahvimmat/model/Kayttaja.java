@@ -40,4 +40,8 @@ public class Kayttaja {
     public int getPaino() {
         return this.paino;
     }
+    @Override
+    public String toString(){
+        return getNimi()+", "+getIka()+" vuotta, "+getPaino()+" kg, "+getPituus()+" cm";
+    }
 }

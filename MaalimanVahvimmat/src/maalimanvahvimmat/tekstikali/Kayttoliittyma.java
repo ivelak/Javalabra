@@ -15,6 +15,7 @@ public class Kayttoliittyma {
     private Kayttajarekisteri rekisteri;
 
     private Kayttoliittyma() {
+        
     }
 
     public Kayttoliittyma(Kayttajarekisteri rekisteri) {

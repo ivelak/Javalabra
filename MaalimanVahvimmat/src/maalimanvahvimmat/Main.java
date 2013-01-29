@@ -17,9 +17,11 @@ public class Main {
         }
 
         
+                
         Kayttajarekisteri rekisteri = new Kayttajarekisteri(kayttajat);
 
         Kayttoliittyma kayttis = new Kayttoliittyma(rekisteri);
         kayttis.kaynnista();
     }
 }
+

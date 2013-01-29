@@ -16,32 +16,34 @@ import java.util.List;
 public class Kayttajarekisteri {
 
     public static void alusta(File kayttajat) throws FileNotFoundException, IOException {
-        FileOutputStream stream= new FileOutputStream(kayttajat);
+        FileOutputStream stream = new FileOutputStream(kayttajat);
         ObjectOutputStream oos = new ObjectOutputStream(stream);
         oos.writeObject(new ArrayList<Kayttaja>());
         oos.flush();
         oos.close();
-        
-    }
 
+    }
     private ArrayList<Kayttaja> rekisteri;
     private File tiedosto;
 
     public Kayttajarekisteri() {
-        this.rekisteri = new ArrayList<Kayttaja>();
+        //this.rekisteri = new ArrayList<Kayttaja>();
     }
 
     public Kayttajarekisteri(File tiedosto) throws IOException, ClassNotFoundException {
+
         this.tiedosto = tiedosto;
         FileInputStream fis = new FileInputStream(tiedosto);
         ObjectInputStream ois = new ObjectInputStream(fis);
         this.rekisteri = (ArrayList<Kayttaja>) ois.readObject();
+
         ois.close();
     }
 
     public void lisaaKayttaja(String nimi, String salasana) {
         Kayttaja kayttaja = new Kayttaja(nimi, salasana);
         this.rekisteri.add(kayttaja);
+
     }
 
     public boolean onkoKayttajaa(String kayttaja) {
@@ -73,7 +75,18 @@ public class Kayttajarekisteri {
         //OutputStream os = new OutputStream(tiedosto);
         FileOutputStream fos = new FileOutputStream(this.tiedosto);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(this.rekisteri);
         oos.flush();
         oos.close();
+    }
+
+    public void tallennaKayttajaTiedostoksi(Kayttaja tallennettava) throws FileNotFoundException, IOException {
+        String tallennusNimi = "" + tallennettava.getNimi() + ".tmp";
+        File kayttajaTiedosto = new File(tallennusNimi);
+        FileOutputStream fos = new FileOutputStream(kayttajaTiedosto);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(tallennettava);
+
+
     }
 }

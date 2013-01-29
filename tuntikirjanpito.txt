@@ -30,4 +30,7 @@ Näyttää siltä että projekti on vietävä loppuun laitoksen koneella.
 25.1.2013
 Aloin toteuttamaan ObjectOutputStreamia ja ObjectInputStreamia saadakseni Kayttajarekistrein tallennetuksi erilliseen .tmp-tiedostoon. Tällä hetkellä ohjelma ei käynnisty ollenkaan.
 
-
+29.1.2013
+12.00-
+testien tekoa
+selvittelyä miksei tiedostoon tallentaminen onnistu: ohjelma käynnistyy kerran, mutta ei enää uudestaan. Ei jotenkin kykene lukemaan tiedostoa.

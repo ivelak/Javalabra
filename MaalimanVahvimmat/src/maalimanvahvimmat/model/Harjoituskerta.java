@@ -14,16 +14,16 @@ import java.util.List;
  */
 public class Harjoituskerta {
 
-    private Date date;
+    private Date pvm;
     private List<Liike> liikkeet;
 
     public Harjoituskerta(Date date) {
-        this.date = date;
+        this.pvm = date;
         this.liikkeet = new ArrayList<Liike>();
     }
 
     public Harjoituskerta() {
-        this.date = new Date();
+        this.pvm = new Date();
     }
 
     public void lisaaLiike(Liike liike) {
