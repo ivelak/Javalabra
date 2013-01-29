@@ -2,7 +2,7 @@ package maalimanvahvimmat.model.liikkeet;
 
 import maalimanvahvimmat.model.Liike;
 
-public class Penkkipunnerrus extends Liike {
+public class Kyykky extends Liike {
 
     
     

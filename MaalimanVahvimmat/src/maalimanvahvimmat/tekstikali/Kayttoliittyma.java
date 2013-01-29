@@ -1,16 +1,25 @@
 package maalimanvahvimmat.tekstikali;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import maalimanvahvimmat.model.Kayttaja;
+import maalimanvahvimmat.tiedostoonTallennin.Lataaja;
+import maalimanvahvimmat.tiedostoonTallennin.Tallennin;
 
 public class Kayttoliittyma {
 
     private Scanner lukija;
     private Kayttajarekisteri rekisteri;
 
-    public Kayttoliittyma() {
+    private Kayttoliittyma() {
+    }
+
+    public Kayttoliittyma(Kayttajarekisteri rekisteri) {
+        this.rekisteri = rekisteri;
         this.lukija = new Scanner(System.in);
-        this.rekisteri = new Kayttajarekisteri();
     }
 
     private int valitseToiminto() {
@@ -53,6 +62,12 @@ public class Kayttoliittyma {
         String salasana = kysySalasana();
 
         rekisteri.lisaaKayttaja(nimi, salasana);
+        try {
+            rekisteri.tallenna();
+        } catch (IOException ex) { 
+            System.err.println(ex.getMessage());
+            Logger.getLogger(Kayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private String kysySalasana() {
@@ -96,6 +111,6 @@ public class Kayttoliittyma {
 
     private void listaaKayttajat() {
         System.out.println(rekisteri);
-        
+
     }
 }
