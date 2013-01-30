@@ -10,19 +10,18 @@ import maalimanvahvimmat.tiedostoonTallennin.Lataaja;
 import maalimanvahvimmat.tiedostoonTallennin.Tallennin;
 
 public class Kayttoliittyma {
-
+    
     private Scanner lukija;
     private Kayttajarekisteri rekisteri;
-
+    
     private Kayttoliittyma() {
-        
     }
-
+    
     public Kayttoliittyma(Kayttajarekisteri rekisteri) {
         this.rekisteri = rekisteri;
         this.lukija = new Scanner(System.in);
     }
-
+    
     private int valitseToiminto() {
         System.out.println("Valitse seuraavista:");
         System.out.println("1. Kirjaudu sisään");
@@ -34,8 +33,8 @@ public class Kayttoliittyma {
         lukija.nextLine();
         return valinta;
     }
-
-    public void kaynnista() {
+    
+    public void kaynnista() throws IOException {
         System.out.println("Tervetuloa!");
         while (true) {
             int valinta = valitseToiminto();
@@ -50,27 +49,24 @@ public class Kayttoliittyma {
             }
         }
     }
-
+    
     private void vanhanKayttajanKirjautuminen() {
         System.out.println("käyttäjätunnus:");
         System.out.print("> ");
         System.out.println("salasana:");
         System.out.print("> ");
     }
-
-    public void lisaaKayttaja() {
+    
+    public void lisaaKayttaja() throws IOException {
         String nimi = kysyKayttajatunnus();
         String salasana = kysySalasana();
-
-        rekisteri.lisaaKayttaja(nimi, salasana);
-        try {
-            rekisteri.tallenna();
-        } catch (IOException ex) { 
-            System.err.println(ex.getMessage());
-            Logger.getLogger(Kayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Kayttaja uusiKayttaja = new Kayttaja(nimi, salasana);
+        
+        rekisteri.lisaaKayttaja(uusiKayttaja);
+        rekisteri.tallennaKayttaja(uusiKayttaja);
+        rekisteri.lisaaKayttajaKayttajalistatiedostoon(uusiKayttaja);      
     }
-
+    
     private String kysySalasana() {
         String salasana;
         while (true) {
@@ -81,7 +77,7 @@ public class Kayttoliittyma {
             System.out.println("Vahvista salasana: ");
             System.out.print("> ");
             String salasanaVarmistus = lukija.nextLine();
-
+            
             if (salasana.equals(salasanaVarmistus)) {
                 System.out.println("Onnistui!");
                 break;
@@ -91,14 +87,14 @@ public class Kayttoliittyma {
         }
         return salasana;
     }
-
+    
     private String kysyKayttajatunnus() {
         String nimi;
         while (true) {
             System.out.println("Anna uusi käyttäjätunnus: ");
             System.out.print("> ");
             nimi = lukija.nextLine();
-
+            
             if (nimi.length() < 3) {
                 System.out.println("Antamasi käyttäjätunnus on liian lyhyt.");
             } else if (rekisteri.onkoKayttajaa(nimi)) {
@@ -109,9 +105,9 @@ public class Kayttoliittyma {
         }
         return nimi;
     }
-
+    
     private void listaaKayttajat() {
         System.out.println(rekisteri);
-
+        
     }
 }

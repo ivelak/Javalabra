@@ -5,6 +5,8 @@ import java.io.ObjectInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectOutputStream;
@@ -12,38 +14,34 @@ import java.io.OutputStream;
 import maalimanvahvimmat.model.Kayttaja;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Kayttajarekisteri {
 
-    public static void alusta(File kayttajat) throws FileNotFoundException, IOException {
-        FileOutputStream stream = new FileOutputStream(kayttajat);
-        ObjectOutputStream oos = new ObjectOutputStream(stream);
-        oos.writeObject(new ArrayList<Kayttaja>());
-        oos.flush();
-        oos.close();
-
+    public static void alusta() {
+        // ei tässä vaiheessa tee mitään, myöhemmin luo rekisteritiedoston mikäli sitä ei ole.
     }
     private ArrayList<Kayttaja> rekisteri;
-    private File tiedosto;
+    private File rekisteritiedosto;
 
     public Kayttajarekisteri() {
-        //this.rekisteri = new ArrayList<Kayttaja>();
+        this.rekisteri = new ArrayList<Kayttaja>();
+
     }
 
-    public Kayttajarekisteri(File tiedosto) throws IOException, ClassNotFoundException {
-
-        this.tiedosto = tiedosto;
-        FileInputStream fis = new FileInputStream(tiedosto);
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        this.rekisteri = (ArrayList<Kayttaja>) ois.readObject();
-
-        ois.close();
+    public Kayttajarekisteri(File tiedosto) throws FileNotFoundException {
+        this.rekisteri = new ArrayList<Kayttaja>();
+        this.rekisteritiedosto = tiedosto;
+        lueRekisterista();
     }
 
     public void lisaaKayttaja(String nimi, String salasana) {
         Kayttaja kayttaja = new Kayttaja(nimi, salasana);
         this.rekisteri.add(kayttaja);
+    }
 
+    public void lisaaKayttaja(Kayttaja kayttaja) {
+        this.rekisteri.add(kayttaja);
     }
 
     public boolean onkoKayttajaa(String kayttaja) {
@@ -51,7 +49,6 @@ public class Kayttajarekisteri {
             if (kayttaja1.getNimi().equals(kayttaja)) {
                 return true;
             }
-
         }
         return false;
     }
@@ -61,32 +58,67 @@ public class Kayttajarekisteri {
         if (rekisteri.isEmpty()) {
             return "EI KÄYTTÄJIÄ!!!";
         }
-
         String tulos = "";
 
         for (Kayttaja kayttaja : rekisteri) {
             tulos += ", " + kayttaja.getNimi();
         }
-
         return tulos.substring(2);
     }
 
-    public void tallenna() throws IOException {
-        //OutputStream os = new OutputStream(tiedosto);
-        FileOutputStream fos = new FileOutputStream(this.tiedosto);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.writeObject(this.rekisteri);
-        oos.flush();
-        oos.close();
+    public void tallennaKayttaja(Kayttaja kayttaja) throws IOException {
+
+        File kayttajatiedosto = new File(kayttaja.getNimi() + ".txt");
+        FileWriter kirjoittaja = new FileWriter(kayttajatiedosto);
+        kirjoittaja.write(kayttaja.getNimi() + "\n");
+        kirjoittaja.write(kayttaja.getSalasana() + "\n");
+        kirjoittaja.write(kayttaja.getIka() + "\n");
+        kirjoittaja.write(kayttaja.getPaino() + "\n");
+        kirjoittaja.write(kayttaja.getPituus() + "\n");
+        kirjoittaja.close();
     }
 
-    public void tallennaKayttajaTiedostoksi(Kayttaja tallennettava) throws FileNotFoundException, IOException {
-        String tallennusNimi = "" + tallennettava.getNimi() + ".tmp";
-        File kayttajaTiedosto = new File(tallennusNimi);
-        FileOutputStream fos = new FileOutputStream(kayttajaTiedosto);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.writeObject(tallennettava);
+    public void lisaaKayttajaKayttajalistatiedostoon(Kayttaja kayttaja) throws IOException {
 
+        String lisattava = kayttaja.getNimi() + "\n";
+        Scanner lukija = new Scanner(rekisteritiedosto);
+        FileWriter kirjoittaja = new FileWriter(rekisteritiedosto);
+        
+        while (lukija.hasNext()) {
+            String vanha = lukija.nextLine();
+            kirjoittaja.write(vanha);
+        }      
+        //kirjoittaja.append(lisattava);
+        kirjoittaja.close();
+        lukija.close();
+    }
 
+    private void lueRekisterista() throws FileNotFoundException {
+        Scanner lukija = new Scanner(rekisteritiedosto);
+
+        while (lukija.hasNextLine()) {
+            String kayttajanNimi = lukija.nextLine();
+            lueKayttajatiedosto(kayttajanNimi);
+        }
+        lukija.close();
+    }
+
+    private void lueKayttajatiedosto(String kayttajaNimi) throws FileNotFoundException {
+        File kayttajaTiedosto = new File(kayttajaNimi + ".txt");
+        Scanner lukija = new Scanner(kayttajaTiedosto);
+        String nimi = lukija.nextLine();
+        String salasana = lukija.nextLine();
+        int ika = Integer.parseInt(lukija.nextLine());
+        int paino = Integer.parseInt(lukija.nextLine());
+        int pituus = Integer.parseInt(lukija.nextLine());
+        lukija.close();
+
+        Kayttaja palautettava = new Kayttaja(nimi, salasana);
+        
+        palautettava.setIka(ika);
+        palautettava.setPaino(paino);
+        palautettava.setPituus(pituus);
+        
+        lisaaKayttaja(palautettava);
     }
 }

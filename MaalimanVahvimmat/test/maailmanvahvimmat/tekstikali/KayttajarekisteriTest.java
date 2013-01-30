@@ -4,6 +4,8 @@
  */
 package maailmanvahvimmat.tekstikali;
 
+import maalimanvahvimmat.model.Kayttaja;
+import maalimanvahvimmat.tekstikali.Kayttajarekisteri;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,6 +18,7 @@ import static org.junit.Assert.*;
  * @author rantapel
  */
 public class KayttajarekisteriTest {
+    private Kayttajarekisteri rekisteri;
     
     public KayttajarekisteriTest() {
     }
@@ -30,6 +33,28 @@ public class KayttajarekisteriTest {
     
     @Before
     public void setUp() {
+        rekisteri = new Kayttajarekisteri();
+        
+    }
+    @Test
+    public void tyhjaRekisteri(){
+        assertEquals("EI KÄYTTÄJIÄ!!!", rekisteri.toString());
+    }
+    @Test
+    public void kayttajanLisaaminenRekisteriin(){
+        Kayttaja kapistelija = new Kayttaja("kapistelija","password");
+        rekisteri.lisaaKayttaja(kapistelija);
+        
+        assertEquals(kapistelija.getNimi(), rekisteri.toString());
+    }
+    @Test
+    public void useanKayttajanLisaaminenRekisteriin(){
+        Kayttaja kapistelija = new Kayttaja("kapistelija","password");
+        Kayttaja fyysikko = new Kayttaja("fyysikko","password");
+        rekisteri.lisaaKayttaja(kapistelija);
+        rekisteri.lisaaKayttaja(fyysikko);
+        
+        assertEquals(kapistelija.getNimi()+", "+fyysikko.getNimi(), rekisteri.toString());
     }
     
     @After

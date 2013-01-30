@@ -11,10 +11,16 @@ public class Kayttaja {
     public Kayttaja(String nimi, String salasana) {
         this.nimi = nimi;
         this.salasana = salasana;
+        this.ika = -1;
+        this.pituus = -1;
+        this.paino = -1;
     }
 
     public void setIka(int ika) {
         this.ika = ika;
+    }
+    public void setSalasana(String salasana){
+        this.salasana = salasana;
     }
 
     public void setPituus(int pituus) {
@@ -27,6 +33,9 @@ public class Kayttaja {
 
     public String getNimi() {
         return this.nimi;
+    }
+    public String getSalasana() {
+        return this.salasana;
     }
 
     public int getIka() {
