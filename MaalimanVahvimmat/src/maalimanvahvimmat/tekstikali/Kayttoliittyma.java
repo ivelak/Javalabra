@@ -63,8 +63,8 @@ public class Kayttoliittyma {
         Kayttaja uusiKayttaja = new Kayttaja(nimi, salasana);
         
         rekisteri.lisaaKayttaja(uusiKayttaja);
-        rekisteri.tallennaKayttaja(uusiKayttaja);
-        rekisteri.lisaaKayttajaKayttajalistatiedostoon(uusiKayttaja);      
+        rekisteri.luoKayttajatiedosto(uusiKayttaja);
+        rekisteri.kirjoitaKayttajatRekisteritiedostoon(uusiKayttaja);      
     }
     
     private String kysySalasana() {

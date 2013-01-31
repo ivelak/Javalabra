@@ -66,7 +66,7 @@ public class Kayttajarekisteri {
         return tulos.substring(2);
     }
 
-    public void tallennaKayttaja(Kayttaja kayttaja) throws IOException {
+    public void luoKayttajatiedosto(Kayttaja kayttaja) throws IOException {
 
         File kayttajatiedosto = new File(kayttaja.getNimi() + ".txt");
         FileWriter kirjoittaja = new FileWriter(kayttajatiedosto);
@@ -78,19 +78,15 @@ public class Kayttajarekisteri {
         kirjoittaja.close();
     }
 
-    public void lisaaKayttajaKayttajalistatiedostoon(Kayttaja kayttaja) throws IOException {
-
-        String lisattava = kayttaja.getNimi() + "\n";
-        Scanner lukija = new Scanner(rekisteritiedosto);
+    public void kirjoitaKayttajatRekisteritiedostoon(Kayttaja kayttaja) throws IOException {  
+        
         FileWriter kirjoittaja = new FileWriter(rekisteritiedosto);
         
-        while (lukija.hasNext()) {
-            String vanha = lukija.nextLine();
-            kirjoittaja.write(vanha);
-        }      
-        //kirjoittaja.append(lisattava);
-        kirjoittaja.close();
-        lukija.close();
+        for (Kayttaja lisattava : rekisteri) {
+            kirjoittaja.write(lisattava.getNimi()+"\n");
+        }   
+        
+        kirjoittaja.close();     
     }
 
     private void lueRekisterista() throws FileNotFoundException {
