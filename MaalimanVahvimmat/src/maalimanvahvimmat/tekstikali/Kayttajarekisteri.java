@@ -18,8 +18,12 @@ import java.util.Scanner;
 
 public class Kayttajarekisteri {
 
-    public static void alusta() {
-        // ei tässä vaiheessa tee mitään, myöhemmin luo rekisteritiedoston mikäli sitä ei ole.
+    public static void alusta(File alustettava) throws IOException {
+
+        FileWriter kirjoittaja = new FileWriter(alustettava);
+        kirjoittaja.write("");
+        kirjoittaja.close();
+        // luo tyhjän kayttajarekisteri.txt -tiedoston.
     }
     private ArrayList<Kayttaja> rekisteri;
     private File rekisteritiedosto;
@@ -53,6 +57,21 @@ public class Kayttajarekisteri {
         return false;
     }
 
+    public Kayttaja getKayttaja(String tunnus) {
+        for (Kayttaja kayttaja : rekisteri) {
+            if (kayttaja.getNimi().equals(tunnus)) {
+                return kayttaja;
+            }
+        }
+        return null;
+    }
+    public boolean tarkistaSalasana(Kayttaja kayttaja, String salasana) {
+        if (kayttaja.getSalasana().equals(salasana)){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         if (rekisteri.isEmpty()) {
@@ -78,15 +97,15 @@ public class Kayttajarekisteri {
         kirjoittaja.close();
     }
 
-    public void kirjoitaKayttajatRekisteritiedostoon(Kayttaja kayttaja) throws IOException {  
-        
+    public void kirjoitaKayttajatRekisteritiedostoon(Kayttaja kayttaja) throws IOException {
+
         FileWriter kirjoittaja = new FileWriter(rekisteritiedosto);
-        
+
         for (Kayttaja lisattava : rekisteri) {
-            kirjoittaja.write(lisattava.getNimi()+"\n");
-        }   
-        
-        kirjoittaja.close();     
+            kirjoittaja.write(lisattava.getNimi() + "\n");
+        }
+
+        kirjoittaja.close();
     }
 
     private void lueRekisterista() throws FileNotFoundException {
@@ -110,11 +129,11 @@ public class Kayttajarekisteri {
         lukija.close();
 
         Kayttaja palautettava = new Kayttaja(nimi, salasana);
-        
+
         palautettava.setIka(ika);
         palautettava.setPaino(paino);
         palautettava.setPituus(pituus);
-        
+
         lisaaKayttaja(palautettava);
     }
 }

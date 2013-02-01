@@ -14,7 +14,7 @@ public class Main {
 
         File kayttajat = new File("kayttajarekisteri.txt");
         if (!kayttajat.exists()) {
-            //Kayttajarekisteri.alusta(kayttajat);
+            Kayttajarekisteri.alusta(kayttajat);
         }
 
         
