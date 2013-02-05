@@ -11,6 +11,11 @@ import maalimanvahvimmat.tekstikali.Kayttoliittyma;
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
+        
+        /**
+         * Main-luokka käynnistää ohjelman. Alun ehtolause tarkistaa löytyykö kayttajarekisteri.txt-tiedostoa. 
+         * Mikäli ei löydy, kutsutaan luokkan Kayttajarekisteri metodia alusta(File Kayttajat).
+         */
 
         File kayttajat = new File("kayttajarekisteri.txt");
         if (!kayttajat.exists()) {

@@ -6,8 +6,13 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import maalimanvahvimmat.model.Kayttaja;
-import maalimanvahvimmat.tiedostoonTallennin.Lataaja;
-import maalimanvahvimmat.tiedostoonTallennin.Tallennin;
+
+/**
+ * Kayttoliittyma-luokka.
+ * 
+ * Luo tekstikäyttöliittymän jonka kautta käyttäjä pystyy hallitsemaan sovellusta.
+ * @author rantapel
+ */
 
 public class Kayttoliittyma {
 
@@ -23,6 +28,11 @@ public class Kayttoliittyma {
         this.rekisteri = rekisteri;
         this.lukija = new Scanner(System.in);
     }
+    
+    /**
+     * päävalikko
+     * @return 
+     */
 
     private int valitseToiminto() {
         System.out.println("Valitse seuraavista:");
@@ -35,6 +45,10 @@ public class Kayttoliittyma {
         lukija.nextLine();
         return valinta;
     }
+    /**
+     * Metodi jolla sovellus käynnistetään
+     * @throws IOException 
+     */
 
     public void kaynnista() throws IOException {
         System.out.println("Tervetuloa!");
@@ -54,6 +68,11 @@ public class Kayttoliittyma {
             }
         }
     }
+    /**
+     * 
+     * Tarkistaa kayttajatunnuksen ja salasanan sisäänkirjautumista varten.
+     * 
+     */
 
     private void vanhanKayttajanKirjautuminen() {
         while (true) {
@@ -94,7 +113,7 @@ public class Kayttoliittyma {
 
         rekisteri.lisaaKayttaja(uusiKayttaja);
         rekisteri.luoKayttajatiedosto(uusiKayttaja);
-        rekisteri.kirjoitaKayttajatRekisteritiedostoon(uusiKayttaja);
+        rekisteri.kirjoitaKayttajatRekisteritiedostoon();
     }
 
     private String kysySalasanaUudeltaKayttajalta() {
@@ -149,6 +168,10 @@ public class Kayttoliittyma {
         lukija.nextLine();
         return valinta;
     }
+    
+    /**
+     * Valikko kirjautunutta käyttäjää varten.
+     */
 
     private void kirjautuneenValikko() {
         while (true) {
@@ -156,7 +179,6 @@ public class Kayttoliittyma {
 
             if (valinta == 1) {
             } else if (valinta == 2) {
-                
             }
 
             if (valinta == 10) {

@@ -1,6 +1,10 @@
 package maalimanvahvimmat.model;
 
 public class Kayttaja {
+    
+    /**
+     * Luo Kayttaja-olion
+     */
 
     private String nimi;
     private String salasana;

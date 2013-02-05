@@ -2,6 +2,11 @@ package maalimanvahvimmat.model;
 
 import java.util.List;
 
+/**
+ * Yläluokka kaikille liikkeille
+ * @author rantapel
+ */
+
 public abstract class Liike {
 
     private List<Integer> toistot;

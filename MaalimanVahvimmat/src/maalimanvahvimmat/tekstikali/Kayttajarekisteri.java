@@ -18,6 +18,12 @@ import java.util.Scanner;
 
 public class Kayttajarekisteri {
 
+    /**
+     * alusta-metodi luo uuden kayttajarekisteri.txt-tiedoston.
+     *
+     * @param alustettava
+     * @throws IOException
+     */
     public static void alusta(File alustettava) throws IOException {
 
         FileWriter kirjoittaja = new FileWriter(alustettava);
@@ -48,6 +54,12 @@ public class Kayttajarekisteri {
         this.rekisteri.add(kayttaja);
     }
 
+    public void poistaKayttaja(Kayttaja kayttaja) {
+        if (this.rekisteri.contains(kayttaja)) {
+            this.rekisteri.remove(kayttaja);
+        }
+    }
+
     public boolean onkoKayttajaa(String kayttaja) {
         for (Kayttaja kayttaja1 : rekisteri) {
             if (kayttaja1.getNimi().equals(kayttaja)) {
@@ -65,8 +77,17 @@ public class Kayttajarekisteri {
         }
         return null;
     }
+
+    /**
+     * tarkastaSalasana-metodi tarkistaa täsmääkö annettu salasana kyseiseen
+     * käyttäjään.
+     *
+     * @param kayttaja
+     * @param salasana
+     * @return
+     */
     public boolean tarkistaSalasana(Kayttaja kayttaja, String salasana) {
-        if (kayttaja.getSalasana().equals(salasana)){
+        if (kayttaja.getSalasana().equals(salasana)) {
             return true;
         }
         return false;
@@ -85,6 +106,14 @@ public class Kayttajarekisteri {
         return tulos.substring(2);
     }
 
+    /**
+     * luoKayttajatiedosto-metodi luo uuden tekstitiedoston uudelle
+     * käyttäjätunnukselle. Tekstitiedostosta luetaan käyttäjätiedot ohjelmaa
+     * avattaessa.
+     *
+     * @param kayttaja
+     * @throws IOException
+     */
     public void luoKayttajatiedosto(Kayttaja kayttaja) throws IOException {
 
         File kayttajatiedosto = new File(kayttaja.getNimi() + ".txt");
@@ -97,7 +126,12 @@ public class Kayttajarekisteri {
         kirjoittaja.close();
     }
 
-    public void kirjoitaKayttajatRekisteritiedostoon(Kayttaja kayttaja) throws IOException {
+    /**
+     * kirjoitaKayttajatRekisteritiedostoon -metodi 
+     * @param kayttaja
+     * @throws IOException
+     */
+    public void kirjoitaKayttajatRekisteritiedostoon() throws IOException {
 
         FileWriter kirjoittaja = new FileWriter(rekisteritiedosto);
 
