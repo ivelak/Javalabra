@@ -30,6 +30,10 @@ public class Harjoituskerta {
         this.pvm = new Date();
         
     }
+    
+    public Date getPvm(){
+        return this.pvm;
+    }
 
     public void lisaaLiike(Liike liike) {
         liikkeet.add(liike);

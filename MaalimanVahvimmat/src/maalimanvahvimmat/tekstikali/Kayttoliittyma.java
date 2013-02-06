@@ -2,9 +2,11 @@ package maalimanvahvimmat.tekstikali;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import maalimanvahvimmat.model.Harjoituskerta;
 import maalimanvahvimmat.model.Kayttaja;
 
 /**
@@ -178,6 +180,7 @@ public class Kayttoliittyma {
             int valinta = KirjautuneenToiminnot();
 
             if (valinta == 1) {
+                lisaaHarjoitus();
             } else if (valinta == 2) {
             }
 
@@ -185,5 +188,30 @@ public class Kayttoliittyma {
                 break;
             }
         }
+    }
+
+    private void lisaaHarjoitus() {
+        System.out.println("Aseta päivämäärä");
+        System.out.println("Vuosi: ");
+        int vuosi = lukija.nextInt()-1900;
+        lukija.nextLine();
+        System.out.println("Kuukausi: ");
+        int kk = lukija.nextInt()-1;
+        lukija.nextLine();
+        System.out.println("Päivä: ");
+        int pva = lukija.nextInt();
+        lukija.nextLine();
+        
+        Date pvm = new Date(vuosi,kk,pva);
+        Harjoituskerta treeni = new Harjoituskerta(pvm);
+        System.out.println("");
+        System.out.println("Harjoitus: "+treeni.getPvm());
+        System.out.println("Lisää liikkeet");
+        lisaaLiikkeet(treeni);
+        
+    }
+
+    private void lisaaLiikkeet(Harjoituskerta treeni) {
+        System.out.println("");
     }
 }
