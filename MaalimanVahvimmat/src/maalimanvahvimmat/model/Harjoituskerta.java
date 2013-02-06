@@ -36,6 +36,7 @@ public class Harjoituskerta {
     }
 
     public void lisaaLiike(Liike liike) {
+        
         liikkeet.add(liike);
     }
 
