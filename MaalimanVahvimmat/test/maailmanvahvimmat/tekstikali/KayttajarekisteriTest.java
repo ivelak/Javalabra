@@ -4,8 +4,8 @@
  */
 package maailmanvahvimmat.tekstikali;
 
-import maalimanvahvimmat.model.Kayttaja;
-import maalimanvahvimmat.tekstikali.Kayttajarekisteri;
+import maalimanvahvimmat.tietomalli.Kayttaja;
+import maalimanvahvimmat.tietomalli.Kayttajarekisteri;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

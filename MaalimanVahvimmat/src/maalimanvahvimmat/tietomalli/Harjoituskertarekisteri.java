@@ -1,10 +1,13 @@
-package maalimanvahvimmat.model;
+package maalimanvahvimmat.tietomalli;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Listaa käyttäjän harjoituskerrat
@@ -24,8 +27,9 @@ public class Harjoituskertarekisteri {
 
     public Harjoituskertarekisteri(Kayttaja kayttaja, File rekisteritiedosto) {
         this.kayttaja = kayttaja;
-        this.harjoituskerrat = new ArrayList<Harjoituskerta>();
         this.rekisteritiedosto = rekisteritiedosto;
+        this.harjoituskerrat = new ArrayList<Harjoituskerta>();
+
     }
 
     public void lisaaHarjoituskertaRekisteriin(Harjoituskerta treeni) {
@@ -37,11 +41,23 @@ public class Harjoituskertarekisteri {
         FileWriter kirjoittaja = new FileWriter(rekisteritiedosto);
 
         for (Harjoituskerta harjoituskerta : harjoituskerrat) {
-            kirjoittaja.write(harjoituskerta.getPvm() + "-" + this.kayttaja.getNimi() + "\n");
+            kirjoittaja.write(harjoituskerta.getPvm() + "\n");
         }
 
         kirjoittaja.close();
     }
-    
-    
+
+    public Harjoituskertarekisteri(Kayttaja kayttaja) throws FileNotFoundException {
+
+        Scanner lukija = new Scanner(kayttaja.getNimi() + "-harjoitukset.txt");
+
+        while (lukija.hasNextLine()) {
+            String pvm = lukija.nextLine();
+            Scanner liikelukija = new Scanner(pvm + "-" + kayttaja.getNimi() + ".txt");
+            Harjoituskerta h = new Harjoituskerta(pvm, liikelukija);
+
+            harjoituskerrat.add(h);
+        }
+
+    }
 }

@@ -1,4 +1,4 @@
-package maalimanvahvimmat.tekstikali;
+package maalimanvahvimmat.tietomalli;
 
 import java.io.File;
 import java.io.ObjectInputStream;
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import maalimanvahvimmat.model.Kayttaja;
+import maalimanvahvimmat.tietomalli.Kayttaja;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -39,19 +39,22 @@ public class Kayttajarekisteri {
 
     }
 
-    public Kayttajarekisteri(File tiedosto) throws FileNotFoundException {
+    public Kayttajarekisteri(File tiedosto) throws FileNotFoundException, IOException {
         this.rekisteri = new ArrayList<Kayttaja>();
         this.rekisteritiedosto = tiedosto;
         lueRekisterista();
     }
 
-    public void lisaaKayttaja(String nimi, String salasana) {
-        Kayttaja kayttaja = new Kayttaja(nimi, salasana);
-        this.rekisteri.add(kayttaja);
-    }
+    public void lisaaKayttaja(Kayttaja kayttaja) throws IOException {
 
-    public void lisaaKayttaja(Kayttaja kayttaja) {
         this.rekisteri.add(kayttaja);
+
+        luoKayttajatiedosto(kayttaja);
+        File harjoitusrekisteritiedosto = new File(kayttaja.getNimi() + "-harjoitukset.txt");
+        Harjoituskertarekisteri harjoitusrekisteri = new Harjoituskertarekisteri(kayttaja, harjoitusrekisteritiedosto);
+        harjoitusrekisteri.alusta(harjoitusrekisteritiedosto);
+
+        kirjoitaKayttajatRekisteritiedostoon();
     }
 
     public void poistaKayttaja(Kayttaja kayttaja) {
@@ -114,7 +117,7 @@ public class Kayttajarekisteri {
      * @param kayttaja
      * @throws IOException
      */
-    public void luoKayttajatiedosto(Kayttaja kayttaja) throws IOException {
+    private void luoKayttajatiedosto(Kayttaja kayttaja) throws IOException {
 
         File kayttajatiedosto = new File(kayttaja.getNimi() + ".txt");
         FileWriter kirjoittaja = new FileWriter(kayttajatiedosto);
@@ -124,14 +127,17 @@ public class Kayttajarekisteri {
         kirjoittaja.write(kayttaja.getPaino() + "\n");
         kirjoittaja.write(kayttaja.getPituus() + "\n");
         kirjoittaja.close();
+
+
     }
 
     /**
-     * kirjoitaKayttajatRekisteritiedostoon -metodi 
+     * kirjoitaKayttajatRekisteritiedostoon -metodi
+     *
      * @param kayttaja
      * @throws IOException
      */
-    public void kirjoitaKayttajatRekisteritiedostoon() throws IOException {
+    private void kirjoitaKayttajatRekisteritiedostoon() throws IOException {
 
         FileWriter kirjoittaja = new FileWriter(rekisteritiedosto);
 
@@ -142,7 +148,7 @@ public class Kayttajarekisteri {
         kirjoittaja.close();
     }
 
-    private void lueRekisterista() throws FileNotFoundException {
+    private void lueRekisterista() throws FileNotFoundException, IOException {
         Scanner lukija = new Scanner(rekisteritiedosto);
 
         while (lukija.hasNextLine()) {
@@ -152,7 +158,7 @@ public class Kayttajarekisteri {
         lukija.close();
     }
 
-    private void lueKayttajatiedosto(String kayttajaNimi) throws FileNotFoundException {
+    private void lueKayttajatiedosto(String kayttajaNimi) throws FileNotFoundException, IOException {
         File kayttajaTiedosto = new File(kayttajaNimi + ".txt");
         Scanner lukija = new Scanner(kayttajaTiedosto);
         String nimi = lukija.nextLine();
@@ -169,5 +175,8 @@ public class Kayttajarekisteri {
         palautettava.setPituus(pituus);
 
         lisaaKayttaja(palautettava);
+    }
+
+    private void luoHarjoitusrekisteri(Kayttaja kayttaja) throws IOException {
     }
 }

@@ -1,4 +1,4 @@
-package maalimanvahvimmat.model;
+package maalimanvahvimmat.tietomalli;
 
 public class Kayttaja {
     

@@ -1,5 +1,6 @@
 package maalimanvahvimmat.tekstikali;
 
+import maalimanvahvimmat.tietomalli.Kayttajarekisteri;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -7,10 +8,10 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import maalimanvahvimmat.model.Harjoituskerta;
-import maalimanvahvimmat.model.Harjoituskertarekisteri;
-import maalimanvahvimmat.model.Kayttaja;
-import maalimanvahvimmat.model.Liike;
+import maalimanvahvimmat.tietomalli.Harjoituskerta;
+import maalimanvahvimmat.tietomalli.Harjoituskertarekisteri;
+import maalimanvahvimmat.tietomalli.Kayttaja;
+import maalimanvahvimmat.tietomalli.Liike;
 
 /**
  * Kayttoliittyma-luokka.
@@ -21,18 +22,20 @@ import maalimanvahvimmat.model.Liike;
  * @author rantapel
  */
 public class Kayttoliittyma {
-    
+
     private Scanner lukija;
     private Kayttajarekisteri rekisteri;
     private Kayttaja kirjautunut;
-    
+    private Harjoituskertarekisteri kirjautuneenHarjoituskertarekisteri;
+
     private Kayttoliittyma() {
     }
-    
+
     public Kayttoliittyma(Kayttajarekisteri rekisteri) {
         this.kirjautunut = null;
         this.rekisteri = rekisteri;
         this.lukija = new Scanner(System.in);
+        this.kirjautuneenHarjoituskertarekisteri = null;
     }
 
     /**
@@ -92,7 +95,7 @@ public class Kayttoliittyma {
             if (kayttajatunnus.equals("10")) {
                 break;
             }
-            
+
             System.out.println("salasana:");
             System.out.print("> ");
             String salasana = lukija.nextLine();
@@ -112,20 +115,17 @@ public class Kayttoliittyma {
             }
         }
     }
-    
+
     public void lisaaKayttaja() throws IOException {
         String nimi = kysyKayttajatunnusUudeltaKayttajalta();
         String salasana = kysySalasanaUudeltaKayttajalta();
         Kayttaja uusiKayttaja = new Kayttaja(nimi, salasana);
-        File harjoitusrekisteritiedosto = new File(uusiKayttaja.getNimi() + "-harjoitukset.txt");
-        Harjoituskertarekisteri harjoitusrekisteri = new Harjoituskertarekisteri(uusiKayttaja, harjoitusrekisteritiedosto);
-        harjoitusrekisteri.alusta(harjoitusrekisteritiedosto);
-        
+
+
         rekisteri.lisaaKayttaja(uusiKayttaja);
-        rekisteri.luoKayttajatiedosto(uusiKayttaja);
-        rekisteri.kirjoitaKayttajatRekisteritiedostoon();
+
     }
-    
+
     private String kysySalasanaUudeltaKayttajalta() {
         String salasana;
         while (true) {
@@ -136,7 +136,7 @@ public class Kayttoliittyma {
             System.out.println("Vahvista salasana: ");
             System.out.print("> ");
             String salasanaVarmistus = lukija.nextLine();
-            
+
             if (salasana.equals(salasanaVarmistus)) {
                 System.out.println("Onnistui!");
                 break;
@@ -146,14 +146,14 @@ public class Kayttoliittyma {
         }
         return salasana;
     }
-    
+
     private String kysyKayttajatunnusUudeltaKayttajalta() {
         String nimi;
         while (true) {
             System.out.println("Anna uusi käyttäjätunnus: ");
             System.out.print("> ");
             nimi = lukija.nextLine();
-            
+
             if (nimi.length() < 3) {
                 System.out.println("Antamasi käyttäjätunnus on liian lyhyt.");
             } else if (rekisteri.onkoKayttajaa(nimi)) {
@@ -164,11 +164,11 @@ public class Kayttoliittyma {
         }
         return nimi;
     }
-    
+
     private void listaaKayttajat() {
         System.out.println(rekisteri);
     }
-    
+
     private int KirjautuneenToiminnot() {
         System.out.println("1. Lisää harjoitus");
         System.out.println("2. Tarkastele vanhoja harjoituksia");
@@ -185,78 +185,93 @@ public class Kayttoliittyma {
     private void kirjautuneenValikko() {
         while (true) {
             int valinta = KirjautuneenToiminnot();
-            
+
             if (valinta == 1) {
                 lisaaHarjoitus();
             } else if (valinta == 2) {
             }
-            
+
             if (valinta == 10) {
                 break;
             }
         }
     }
-    
+
     private void lisaaHarjoitus() {
-        System.out.println("Aseta päivämäärä");
-        System.out.println("Vuosi: ");
-        int vuosi = lukija.nextInt() - 1900;
-        lukija.nextLine();
-        System.out.println("Kuukausi: ");
-        int kk = lukija.nextInt() - 1;
-        lukija.nextLine();
-        System.out.println("Päivä: ");
-        int pva = lukija.nextInt();
-        lukija.nextLine();
-        
-        Date pvm = new Date(vuosi, kk, pva);
+        System.out.println("Aseta päivämäärä (muotoa pp/kk/vvvv)");
+        System.out.print("> ");
+
+        String pvm = lukija.nextLine();
         Harjoituskerta treeni = new Harjoituskerta(pvm);
         System.out.println("");
         System.out.println("Harjoitus: " + treeni.getPvm());
-        lisaaLiikkeet(treeni);
-        
+        liikevalikko(treeni);
+
+
+
     }
-    
-    private void lisaaLiikkeet(Harjoituskerta treeni) {
+
+    private void liikevalikko(Harjoituskerta treeni) {
         while (true) {
+
             System.out.println("");
             System.out.println("1. Lisää liikke");
+            System.out.println("2. Tulosta liikkeet");
             System.out.println("10. Lopeta");
-            System.out.println("> ");
+            System.out.print(treeni.getPvm() + "> ");
             int valinta = lukija.nextInt();
             lukija.nextLine();
             if (valinta == 10) {
                 break;
+
+            } else if (valinta == 2) {
+                tulostaLiikkeet();
             } else if (valinta == 1) {
-                System.out.println("Liikkeen nimi:");
-                System.out.println("> ");
-                String nimi = lukija.nextLine();
-                System.out.println("sarjojen määrä:");
-                System.out.println("> ");
-                int sarjoja = lukija.nextInt();
-                lukija.nextLine();
-                Liike liike = new Liike(nimi, sarjoja);
-                int[] toistotT = new int[sarjoja];
-                int[] painotT = new int[sarjoja];
-                System.out.println("");
-                System.out.println("Kirjaa toistomäärät ja painot:");
-                System.out.println("");
-                for (int i = 0; i < sarjoja; i++) {
-                    System.out.println(i + ". sarja");
-                    System.out.println("toistoja: ");
-                    System.out.println("> ");
-                    int toistot = lukija.nextInt();
-                    lukija.nextLine();
-                    System.out.println("painot(kg): ");
-                    System.out.println("> ");
-                    int painot = lukija.nextInt();
-                    lukija.nextLine();
-                    toistotT[i] = toistot;
-                    painotT[i] = painot;
-                }
-                liike.setToistotJaPainot(toistotT, painotT);
-                
+                lisaaLiikkeet();
+
             }
         }
+    }
+
+    private void tulostaLiikkeet() {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    private Liike lisaaLiikkeet() {
+        System.out.println("Liikkeen nimi:");
+        System.out.println("> ");
+        String nimi = lukija.nextLine();
+
+
+        Liike liike = new Liike(nimi);
+
+        while (true) {
+            System.out.println("Lisää toistot ja painot, tyhjä rivi lopettaa");
+            System.out.println("Toistomäärä: ");
+            int toisto;
+            int paino;
+
+            String rivi = lukija.nextLine();
+            try {
+                toisto = Integer.parseInt(rivi);
+            } catch (NumberFormatException e) {
+                break;
+            }
+
+            
+            
+            System.out.println("Paino: ");
+            rivi=lukija.nextLine();
+            try {
+                paino = Integer.parseInt(rivi);
+            } catch (NumberFormatException e) {
+                break;
+            }        
+            liike.lisaaToistoJaPaino(toisto, paino);
+
+        }
+        return liike;
+
+
     }
 }

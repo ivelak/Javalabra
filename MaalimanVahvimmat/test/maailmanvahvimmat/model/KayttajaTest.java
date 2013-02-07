@@ -4,7 +4,7 @@
  */
 package maailmanvahvimmat.model;
 
-import maalimanvahvimmat.model.Kayttaja;
+import maalimanvahvimmat.tietomalli.Kayttaja;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

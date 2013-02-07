@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import maalimanvahvimmat.model.Kayttaja;
-import maalimanvahvimmat.tekstikali.Kayttajarekisteri;
+import maalimanvahvimmat.tietomalli.Kayttaja;
+import maalimanvahvimmat.tietomalli.Kayttajarekisteri;
 import maalimanvahvimmat.tekstikali.Kayttoliittyma;
 
 public class Main {
