@@ -1,5 +1,6 @@
 package maalimanvahvimmat.tekstikali;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
@@ -7,35 +8,38 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import maalimanvahvimmat.model.Harjoituskerta;
+import maalimanvahvimmat.model.Harjoituskertarekisteri;
 import maalimanvahvimmat.model.Kayttaja;
+import maalimanvahvimmat.model.Liike;
 
 /**
  * Kayttoliittyma-luokka.
- * 
- * Luo tekstikäyttöliittymän jonka kautta käyttäjä pystyy hallitsemaan sovellusta.
+ *
+ * Luo tekstikäyttöliittymän jonka kautta käyttäjä pystyy hallitsemaan
+ * sovellusta.
+ *
  * @author rantapel
  */
-
 public class Kayttoliittyma {
-
+    
     private Scanner lukija;
     private Kayttajarekisteri rekisteri;
     private Kayttaja kirjautunut;
-
+    
     private Kayttoliittyma() {
     }
-
+    
     public Kayttoliittyma(Kayttajarekisteri rekisteri) {
         this.kirjautunut = null;
         this.rekisteri = rekisteri;
         this.lukija = new Scanner(System.in);
     }
-    
+
     /**
      * päävalikko
-     * @return 
+     *
+     * @return
      */
-
     private int valitseToiminto() {
         System.out.println("Valitse seuraavista:");
         System.out.println("1. Kirjaudu sisään");
@@ -47,11 +51,12 @@ public class Kayttoliittyma {
         lukija.nextLine();
         return valinta;
     }
+
     /**
      * Metodi jolla sovellus käynnistetään
-     * @throws IOException 
+     *
+     * @throws IOException
      */
-
     public void kaynnista() throws IOException {
         System.out.println("Tervetuloa!");
         while (true) {
@@ -70,12 +75,12 @@ public class Kayttoliittyma {
             }
         }
     }
-    /**
-     * 
-     * Tarkistaa kayttajatunnuksen ja salasanan sisäänkirjautumista varten.
-     * 
-     */
 
+    /**
+     *
+     * Tarkistaa kayttajatunnuksen ja salasanan sisäänkirjautumista varten.
+     *
+     */
     private void vanhanKayttajanKirjautuminen() {
         while (true) {
             System.out.println("Anna käyttäjätunnus ja salasana");
@@ -87,7 +92,7 @@ public class Kayttoliittyma {
             if (kayttajatunnus.equals("10")) {
                 break;
             }
-
+            
             System.out.println("salasana:");
             System.out.print("> ");
             String salasana = lukija.nextLine();
@@ -107,17 +112,20 @@ public class Kayttoliittyma {
             }
         }
     }
-
+    
     public void lisaaKayttaja() throws IOException {
         String nimi = kysyKayttajatunnusUudeltaKayttajalta();
         String salasana = kysySalasanaUudeltaKayttajalta();
         Kayttaja uusiKayttaja = new Kayttaja(nimi, salasana);
-
+        File harjoitusrekisteritiedosto = new File(uusiKayttaja.getNimi() + "-harjoitukset.txt");
+        Harjoituskertarekisteri harjoitusrekisteri = new Harjoituskertarekisteri(uusiKayttaja, harjoitusrekisteritiedosto);
+        harjoitusrekisteri.alusta(harjoitusrekisteritiedosto);
+        
         rekisteri.lisaaKayttaja(uusiKayttaja);
         rekisteri.luoKayttajatiedosto(uusiKayttaja);
         rekisteri.kirjoitaKayttajatRekisteritiedostoon();
     }
-
+    
     private String kysySalasanaUudeltaKayttajalta() {
         String salasana;
         while (true) {
@@ -128,7 +136,7 @@ public class Kayttoliittyma {
             System.out.println("Vahvista salasana: ");
             System.out.print("> ");
             String salasanaVarmistus = lukija.nextLine();
-
+            
             if (salasana.equals(salasanaVarmistus)) {
                 System.out.println("Onnistui!");
                 break;
@@ -138,14 +146,14 @@ public class Kayttoliittyma {
         }
         return salasana;
     }
-
+    
     private String kysyKayttajatunnusUudeltaKayttajalta() {
         String nimi;
         while (true) {
             System.out.println("Anna uusi käyttäjätunnus: ");
             System.out.print("> ");
             nimi = lukija.nextLine();
-
+            
             if (nimi.length() < 3) {
                 System.out.println("Antamasi käyttäjätunnus on liian lyhyt.");
             } else if (rekisteri.onkoKayttajaa(nimi)) {
@@ -156,11 +164,11 @@ public class Kayttoliittyma {
         }
         return nimi;
     }
-
+    
     private void listaaKayttajat() {
         System.out.println(rekisteri);
     }
-
+    
     private int KirjautuneenToiminnot() {
         System.out.println("1. Lisää harjoitus");
         System.out.println("2. Tarkastele vanhoja harjoituksia");
@@ -170,48 +178,85 @@ public class Kayttoliittyma {
         lukija.nextLine();
         return valinta;
     }
-    
+
     /**
      * Valikko kirjautunutta käyttäjää varten.
      */
-
     private void kirjautuneenValikko() {
         while (true) {
             int valinta = KirjautuneenToiminnot();
-
+            
             if (valinta == 1) {
                 lisaaHarjoitus();
             } else if (valinta == 2) {
             }
-
+            
             if (valinta == 10) {
                 break;
             }
         }
     }
-
+    
     private void lisaaHarjoitus() {
         System.out.println("Aseta päivämäärä");
         System.out.println("Vuosi: ");
-        int vuosi = lukija.nextInt()-1900;
+        int vuosi = lukija.nextInt() - 1900;
         lukija.nextLine();
         System.out.println("Kuukausi: ");
-        int kk = lukija.nextInt()-1;
+        int kk = lukija.nextInt() - 1;
         lukija.nextLine();
         System.out.println("Päivä: ");
         int pva = lukija.nextInt();
         lukija.nextLine();
         
-        Date pvm = new Date(vuosi,kk,pva);
+        Date pvm = new Date(vuosi, kk, pva);
         Harjoituskerta treeni = new Harjoituskerta(pvm);
         System.out.println("");
-        System.out.println("Harjoitus: "+treeni.getPvm());
-        System.out.println("Lisää liikkeet");
+        System.out.println("Harjoitus: " + treeni.getPvm());
         lisaaLiikkeet(treeni);
         
     }
-
+    
     private void lisaaLiikkeet(Harjoituskerta treeni) {
-        System.out.println("");
+        while (true) {
+            System.out.println("");
+            System.out.println("1. Lisää liikke");
+            System.out.println("10. Lopeta");
+            System.out.println("> ");
+            int valinta = lukija.nextInt();
+            lukija.nextLine();
+            if (valinta == 10) {
+                break;
+            } else if (valinta == 1) {
+                System.out.println("Liikkeen nimi:");
+                System.out.println("> ");
+                String nimi = lukija.nextLine();
+                System.out.println("sarjojen määrä:");
+                System.out.println("> ");
+                int sarjoja = lukija.nextInt();
+                lukija.nextLine();
+                Liike liike = new Liike(nimi, sarjoja);
+                int[] toistotT = new int[sarjoja];
+                int[] painotT = new int[sarjoja];
+                System.out.println("");
+                System.out.println("Kirjaa toistomäärät ja painot:");
+                System.out.println("");
+                for (int i = 0; i < sarjoja; i++) {
+                    System.out.println(i + ". sarja");
+                    System.out.println("toistoja: ");
+                    System.out.println("> ");
+                    int toistot = lukija.nextInt();
+                    lukija.nextLine();
+                    System.out.println("painot(kg): ");
+                    System.out.println("> ");
+                    int painot = lukija.nextInt();
+                    lukija.nextLine();
+                    toistotT[i] = toistot;
+                    painotT[i] = painot;
+                }
+                liike.setToistotJaPainot(toistotT, painotT);
+                
+            }
+        }
     }
 }
