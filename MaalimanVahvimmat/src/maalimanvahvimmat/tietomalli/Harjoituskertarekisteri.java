@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import maalimanvahvimmat.Loki;
 
 /**
  * Listaa käyttäjän harjoituskerrat
@@ -51,11 +52,17 @@ public class Harjoituskertarekisteri {
     }
 
     public Harjoituskertarekisteri(Kayttaja kayttaja) throws FileNotFoundException {
+        
 
-        Scanner lukija = new Scanner(kayttaja.getNimi() + "-harjoitukset.txt");
+        Scanner lukija = new Scanner(new File(kayttaja.getNimi() + "-harjoitukset.txt"));
 
         while (lukija.hasNextLine()) {
+            
             String pvm = lukija.nextLine();
+            Loki.d(pvm);
+            if (pvm.isEmpty()){
+                break;
+            }
             Scanner liikelukija = new Scanner(pvm + "-" + kayttaja.getNimi() + ".txt");
             Harjoituskerta h = new Harjoituskerta(pvm, liikelukija);
 
