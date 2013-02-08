@@ -56,11 +56,21 @@ public class Harjoituskerta {
 
     public void tallennaHarjoituskertatiedosto(Kayttaja kayttaja) throws IOException {
         File treenitiedosto = new File(getPvm() + "-" + kayttaja.getNimi() + ".txt");
+        if (!treenitiedosto.exists()){
+            alusta(treenitiedosto);
+        }
 
         FileWriter kirjoittaja = new FileWriter(treenitiedosto);
         for (Liike liike : liikkeet) {
 
             liike.kirjoitaTiedostoon(kirjoittaja);
         }
+    }
+
+    public static void alusta(File alustettava) throws IOException {
+        
+        FileWriter kirjoittaja = new FileWriter(alustettava);
+        kirjoittaja.write("");
+        kirjoittaja.close();
     }
 }

@@ -205,10 +205,11 @@ public class Kayttoliittyma {
 
         String pvm = lukija.nextLine();
         Harjoituskerta treeni = new Harjoituskerta(pvm);
+        kirjautuneenHarjoituskertarekisteri.lisaaHarjoituskertaRekisteriin(treeni);
         System.out.println("");
         System.out.println("Harjoitus: " + treeni.getPvm());
         liikevalikko(treeni);
-        kirjautuneenHarjoituskertarekisteri.lisaaHarjoituskertaRekisteriin(treeni);
+        
 
 
 

@@ -52,9 +52,11 @@ public class Harjoituskertarekisteri {
     }
 
     public Harjoituskertarekisteri(Kayttaja kayttaja) throws FileNotFoundException {
+        this.kayttaja = kayttaja;
+        this.harjoituskerrat = new ArrayList<Harjoituskerta>();
+        this.rekisteritiedosto = new File(kayttaja.getNimi() + "-harjoitukset.txt");
         
-
-        Scanner lukija = new Scanner(new File(kayttaja.getNimi() + "-harjoitukset.txt"));
+        Scanner lukija = new Scanner(this.rekisteritiedosto);
 
         while (lukija.hasNextLine()) {
             
@@ -63,7 +65,7 @@ public class Harjoituskertarekisteri {
             if (pvm.isEmpty()){
                 break;
             }
-            Scanner liikelukija = new Scanner(pvm + "-" + kayttaja.getNimi() + ".txt");
+            Scanner liikelukija = new Scanner(new File(pvm + "-" + kayttaja.getNimi() + ".txt"));
             Harjoituskerta h = new Harjoituskerta(pvm, liikelukija);
 
             harjoituskerrat.add(h);
