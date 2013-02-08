@@ -4,6 +4,7 @@
  */
 package maalimanvahvimmat.tietomalli;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,14 +55,12 @@ public class Harjoituskerta {
     }
 
     public void tallennaHarjoituskertatiedosto(Kayttaja kayttaja) throws IOException {
+        File treenitiedosto = new File(getPvm() + "-" + kayttaja.getNimi() + ".txt");
 
-        FileWriter kirjoittaja = new FileWriter(getPvm() + "-" + kayttaja.getNimi() + ".txt");
+        FileWriter kirjoittaja = new FileWriter(treenitiedosto);
         for (Liike liike : liikkeet) {
 
             liike.kirjoitaTiedostoon(kirjoittaja);
         }
-
-
-
     }
 }

@@ -2,6 +2,7 @@ package maalimanvahvimmat.tekstikali;
 
 import maalimanvahvimmat.tietomalli.Kayttajarekisteri;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
@@ -84,7 +85,7 @@ public class Kayttoliittyma {
      * Tarkistaa kayttajatunnuksen ja salasanan sisäänkirjautumista varten.
      *
      */
-    private void vanhanKayttajanKirjautuminen() {
+    private void vanhanKayttajanKirjautuminen() throws FileNotFoundException {
         while (true) {
             System.out.println("Anna käyttäjätunnus ja salasana");
             System.out.println("(Palaa päävalikkoon valitsemalla 10");
@@ -103,6 +104,7 @@ public class Kayttoliittyma {
                 Kayttaja apuKayttaja = rekisteri.getKayttaja(kayttajatunnus);
                 if (rekisteri.tarkistaSalasana(apuKayttaja, salasana)) {
                     this.kirjautunut = rekisteri.getKayttaja(kayttajatunnus);
+                    this.kirjautuneenHarjoituskertarekisteri=new Harjoituskertarekisteri(this.kirjautunut);
                     System.out.println("");
                     System.out.println("Sisäänkirjautuminen onnistui!");
                     System.out.println("Olet kirjautunut sisään käyttäjätunnuksella " + this.kirjautunut.getNimi());
@@ -173,7 +175,7 @@ public class Kayttoliittyma {
         System.out.println("1. Lisää harjoitus");
         System.out.println("2. Tarkastele vanhoja harjoituksia");
         System.out.println("10. Kirjaudu ulos");
-        System.out.println("> ");
+        System.out.print("> ");
         int valinta = lukija.nextInt();
         lukija.nextLine();
         return valinta;
@@ -182,7 +184,7 @@ public class Kayttoliittyma {
     /**
      * Valikko kirjautunutta käyttäjää varten.
      */
-    private void kirjautuneenValikko() {
+    private void kirjautuneenValikko() throws IOException {
         while (true) {
             int valinta = KirjautuneenToiminnot();
 
@@ -197,7 +199,7 @@ public class Kayttoliittyma {
         }
     }
 
-    private void lisaaHarjoitus() {
+    private void lisaaHarjoitus() throws IOException {
         System.out.println("Aseta päivämäärä (muotoa pp/kk/vvvv)");
         System.out.print("> ");
 
@@ -206,6 +208,7 @@ public class Kayttoliittyma {
         System.out.println("");
         System.out.println("Harjoitus: " + treeni.getPvm());
         liikevalikko(treeni);
+        kirjautuneenHarjoituskertarekisteri.lisaaHarjoituskertaRekisteriin(treeni);
 
 
 

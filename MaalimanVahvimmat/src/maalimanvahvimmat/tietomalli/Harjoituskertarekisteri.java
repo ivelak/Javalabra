@@ -32,8 +32,11 @@ public class Harjoituskertarekisteri {
 
     }
 
-    public void lisaaHarjoituskertaRekisteriin(Harjoituskerta treeni) {
+    public void lisaaHarjoituskertaRekisteriin(Harjoituskerta treeni) throws IOException {
+        
         this.harjoituskerrat.add(treeni);
+        kirjoitaRekisteriTiedostoon();
+        treeni.tallennaHarjoituskertatiedosto(kayttaja);
     }
 
     public void kirjoitaRekisteriTiedostoon() throws IOException {
