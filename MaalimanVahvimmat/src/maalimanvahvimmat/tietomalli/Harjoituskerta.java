@@ -44,7 +44,6 @@ public class Harjoituskerta {
     }
 
     public void lisaaLiike(Liike liike) {
-
         liikkeet.add(liike);
     }
 
@@ -56,15 +55,30 @@ public class Harjoituskerta {
 
     public void tallennaHarjoituskertatiedosto(Kayttaja kayttaja) throws IOException {
         File treenitiedosto = new File(getPvm() + "-" + kayttaja.getNimi() + ".txt");
-        if (!treenitiedosto.exists()){
-            alusta(treenitiedosto);
-        }
-
         FileWriter kirjoittaja = new FileWriter(treenitiedosto);
+        
         for (Liike liike : liikkeet) {
-
             liike.kirjoitaTiedostoon(kirjoittaja);
         }
+            
+            /*kirjoittaja.write(liike.getNimi() + "\n");
+        for (int i = 0; i < liike.getToistot().size(); i++) {
+            String a = ""+liike.getToistot().get(i);
+            kirjoittaja.write(a);
+            kirjoittaja.write(" ");
+        }
+        kirjoittaja.write("\n");
+        for (int i = 0; i < liike.getPainot().size(); i++) {
+            String a = ""+liike.getPainot().get(i);
+            kirjoittaja.write(a);
+            kirjoittaja.write(" ");
+        }
+        kirjoittaja.write("\n");
+    }*/
+        kirjoittaja.close();
+
+           
+        
     }
 
     public static void alusta(File alustettava) throws IOException {

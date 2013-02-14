@@ -26,13 +26,7 @@ public class Harjoituskertarekisteri {
     private List<Harjoituskerta> harjoituskerrat;
     private File rekisteritiedosto;
 
-    public Harjoituskertarekisteri(Kayttaja kayttaja, File rekisteritiedosto) {
-        this.kayttaja = kayttaja;
-        this.rekisteritiedosto = rekisteritiedosto;
-        this.harjoituskerrat = new ArrayList<Harjoituskerta>();
-
-    }
-
+    
     public void lisaaHarjoituskertaRekisteriin(Harjoituskerta treeni) throws IOException {
         
         this.harjoituskerrat.add(treeni);
@@ -45,16 +39,16 @@ public class Harjoituskertarekisteri {
         FileWriter kirjoittaja = new FileWriter(rekisteritiedosto);
 
         for (Harjoituskerta harjoituskerta : harjoituskerrat) {
-            kirjoittaja.write(harjoituskerta.getPvm() + "\n");
+            kirjoittaja.write(harjoituskerta.getPvm() + "\r\n");
         }
 
         kirjoittaja.close();
     }
 
-    public Harjoituskertarekisteri(Kayttaja kayttaja) throws FileNotFoundException {
+    public Harjoituskertarekisteri(Kayttaja kayttaja, File rekisteritiedosto) throws FileNotFoundException {
         this.kayttaja = kayttaja;
         this.harjoituskerrat = new ArrayList<Harjoituskerta>();
-        this.rekisteritiedosto = new File(kayttaja.getNimi() + "-harjoitukset.txt");
+        this.rekisteritiedosto = rekisteritiedosto;
         
         Scanner lukija = new Scanner(this.rekisteritiedosto);
 
@@ -72,4 +66,13 @@ public class Harjoituskertarekisteri {
         }
 
     }
+    public void listaaHarjoituskerrat(){
+        if (this.harjoituskerrat.isEmpty()){
+            System.out.println("Ei aikaisempia harjoituksia");
+        }
+        for (Harjoituskerta harjoituskerta : harjoituskerrat) {
+            System.out.println(harjoituskerta.getPvm());
+        }
+    }
+    
 }

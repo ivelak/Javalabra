@@ -23,6 +23,15 @@ public class Liike {
         this.nimi = nimi;
 
     }
+    
+    @Override
+    public String toString(){
+        String liikedata = this.nimi+": ";
+        for (int i = 0; i < toistot.size(); i++) {
+            liikedata+=""+toistot.get(i)+"x"+painot.get(i)+"kg ";
+        }
+        return liikedata;
+    }
 
     public String getNimi() {
         return this.nimi;
@@ -30,6 +39,12 @@ public class Liike {
     public void lisaaToistoJaPaino(int toisto, int paino){
         toistot.add(toisto);
         painot.add(paino);
+    }
+    public ArrayList<Integer> getToistot(){
+        return this.toistot;
+    }
+    public ArrayList<Integer> getPainot(){
+        return this.painot;
     }
 
     /*public void listaaLiike() {
@@ -42,17 +57,20 @@ public class Liike {
      }
      }*/
     void kirjoitaTiedostoon(FileWriter kirjoittaja) throws IOException {
-        kirjoittaja.write(getNimi() + "\n");
+        kirjoittaja.write(getNimi());
+        kirjoittaja.write("\r\n");
         for (int i = 0; i < toistot.size(); i++) {
-            kirjoittaja.write(toistot.get(i));
+            String a = ""+toistot.get(i);
+            kirjoittaja.write(a);
             kirjoittaja.write(" ");
         }
-        kirjoittaja.write("\n");
+        kirjoittaja.write("\r\n");
         for (int i = 0; i < painot.size(); i++) {
-            kirjoittaja.write(painot.get(i));
+            String a = ""+painot.get(i);
+            kirjoittaja.write(a);
             kirjoittaja.write(" ");
         }
-        kirjoittaja.write("\n");
+        kirjoittaja.write("\r\n");
     }
 
     public Liike (Scanner lukija) {

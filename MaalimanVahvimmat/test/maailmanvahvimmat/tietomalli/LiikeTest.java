@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package maailmanvahvimmat.model.liikkeet;
+package maailmanvahvimmat.tietomalli;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -15,9 +15,9 @@ import static org.junit.Assert.*;
  *
  * @author rantapel
  */
-public class KyykkyTest {
+public class LiikeTest {
     
-    public KyykkyTest() {
+    public LiikeTest() {
     }
     
     @BeforeClass

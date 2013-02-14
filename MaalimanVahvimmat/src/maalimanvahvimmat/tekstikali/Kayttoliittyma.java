@@ -104,7 +104,7 @@ public class Kayttoliittyma {
                 Kayttaja apuKayttaja = rekisteri.getKayttaja(kayttajatunnus);
                 if (rekisteri.tarkistaSalasana(apuKayttaja, salasana)) {
                     this.kirjautunut = rekisteri.getKayttaja(kayttajatunnus);
-                    this.kirjautuneenHarjoituskertarekisteri=new Harjoituskertarekisteri(this.kirjautunut);
+                    this.kirjautuneenHarjoituskertarekisteri = new Harjoituskertarekisteri(this.kirjautunut, new File(this.kirjautunut.getNimi() + "-harjoitukset.txt"));
                     System.out.println("");
                     System.out.println("Sisäänkirjautuminen onnistui!");
                     System.out.println("Olet kirjautunut sisään käyttäjätunnuksella " + this.kirjautunut.getNimi());
@@ -191,6 +191,7 @@ public class Kayttoliittyma {
             if (valinta == 1) {
                 lisaaHarjoitus();
             } else if (valinta == 2) {
+                kirjautuneenHarjoituskertarekisteri.listaaHarjoituskerrat();
             }
 
             if (valinta == 10) {
@@ -200,22 +201,23 @@ public class Kayttoliittyma {
     }
 
     private void lisaaHarjoitus() throws IOException {
-        System.out.println("Aseta päivämäärä (muotoa pp/kk/vvvv)");
+        System.out.println("Aseta päivämäärä (muotoa pp.kk.vvvv)");
         System.out.print("> ");
 
         String pvm = lukija.nextLine();
         Harjoituskerta treeni = new Harjoituskerta(pvm);
-        kirjautuneenHarjoituskertarekisteri.lisaaHarjoituskertaRekisteriin(treeni);
+
         System.out.println("");
         System.out.println("Harjoitus: " + treeni.getPvm());
         liikevalikko(treeni);
-        
+        kirjautuneenHarjoituskertarekisteri.lisaaHarjoituskertaRekisteriin(treeni);
+
 
 
 
     }
 
-    private void liikevalikko(Harjoituskerta treeni) {
+    private void liikevalikko(Harjoituskerta treeni) throws IOException {
         while (true) {
 
             System.out.println("");
@@ -226,27 +228,22 @@ public class Kayttoliittyma {
             int valinta = lukija.nextInt();
             lukija.nextLine();
             if (valinta == 10) {
+                treeni.tallennaHarjoituskertatiedosto(kirjautunut);
                 break;
 
             } else if (valinta == 2) {
-                tulostaLiikkeet();
+                treeni.listaaLiikkeet();
             } else if (valinta == 1) {
-                lisaaLiikkeet();
+                treeni.lisaaLiike(lisaaLiike());
 
             }
         }
     }
 
-    private void tulostaLiikkeet() {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    private Liike lisaaLiikkeet() {
+    private Liike lisaaLiike() {
         System.out.println("Liikkeen nimi:");
         System.out.println("> ");
         String nimi = lukija.nextLine();
-
-
         Liike liike = new Liike(nimi);
 
         while (true) {
@@ -262,15 +259,15 @@ public class Kayttoliittyma {
                 break;
             }
 
-            
-            
+
+
             System.out.println("Paino: ");
-            rivi=lukija.nextLine();
+            rivi = lukija.nextLine();
             try {
                 paino = Integer.parseInt(rivi);
             } catch (NumberFormatException e) {
                 break;
-            }        
+            }
             liike.lisaaToistoJaPaino(toisto, paino);
 
         }
