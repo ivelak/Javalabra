@@ -76,17 +76,20 @@ public class Liike {
     public Liike (Scanner lukija) {
         Pattern hahmo = Pattern.compile("\\d+| ");
         
-        this.nimi = lukija.nextLine();
-        
+        this.nimi = lukija.next();
+        lukija.nextLine();
         while (lukija.hasNext(hahmo)) {
-            toistot.add(lukija.nextInt());
-            lukija.next(" ");
+            int a = Integer.parseInt(lukija.next());
+            toistot.add(a);
+            lukija.skip(" ");
         }
         lukija.nextLine();
         while (lukija.hasNext(hahmo)) {
             painot.add(lukija.nextInt());
-            lukija.next(" ");
+            lukija.skip(" ");
         }
+        if (lukija.hasNextLine()){
         lukija.nextLine();
+        }
     }
 }

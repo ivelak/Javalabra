@@ -52,7 +52,9 @@ public class Kayttajarekisteri {
         luoKayttajatiedosto(kayttaja);
         File harjoitusrekisteritiedosto = new File(kayttaja.getNimi() + "-harjoitukset.txt");
         Harjoituskertarekisteri harjoitusrekisteri = new Harjoituskertarekisteri(kayttaja, harjoitusrekisteritiedosto);
+        if (!harjoitusrekisteritiedosto.exists()){
         harjoitusrekisteri.alusta(harjoitusrekisteritiedosto);
+        }
 
         kirjoitaKayttajatRekisteritiedostoon();
     }
@@ -121,11 +123,11 @@ public class Kayttajarekisteri {
 
         File kayttajatiedosto = new File(kayttaja.getNimi() + ".txt");
         FileWriter kirjoittaja = new FileWriter(kayttajatiedosto);
-        kirjoittaja.write(kayttaja.getNimi() + "\n");
-        kirjoittaja.write(kayttaja.getSalasana() + "\n");
-        kirjoittaja.write(kayttaja.getIka() + "\n");
-        kirjoittaja.write(kayttaja.getPaino() + "\n");
-        kirjoittaja.write(kayttaja.getPituus() + "\n");
+        kirjoittaja.write(kayttaja.getNimi() + "\r\n");
+        kirjoittaja.write(kayttaja.getSalasana() + "\r\n");
+        kirjoittaja.write(kayttaja.getIka() + "\r\n");
+        kirjoittaja.write(kayttaja.getPaino() + "\r\n");
+        kirjoittaja.write(kayttaja.getPituus() + "\r\n");
         kirjoittaja.close();
 
 
@@ -142,7 +144,7 @@ public class Kayttajarekisteri {
         FileWriter kirjoittaja = new FileWriter(rekisteritiedosto);
 
         for (Kayttaja lisattava : rekisteri) {
-            kirjoittaja.write(lisattava.getNimi() + "\n");
+            kirjoittaja.write(lisattava.getNimi() + "\r\n");
         }
 
         kirjoittaja.close();
@@ -177,6 +179,5 @@ public class Kayttajarekisteri {
         lisaaKayttaja(palautettava);
     }
 
-    private void luoHarjoitusrekisteri(Kayttaja kayttaja) throws IOException {
-    }
+    
 }

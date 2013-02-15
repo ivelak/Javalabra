@@ -32,6 +32,7 @@ public class Harjoituskerta {
 
     public Harjoituskerta(String pvm, Scanner lukija) {
         this.pvm = pvm;
+        this.liikkeet = new ArrayList<Liike>();
         while (lukija.hasNextLine()) {
             Liike liike = new Liike(lukija);
             liikkeet.add(liike);

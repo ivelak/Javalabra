@@ -191,7 +191,8 @@ public class Kayttoliittyma {
             if (valinta == 1) {
                 lisaaHarjoitus();
             } else if (valinta == 2) {
-                kirjautuneenHarjoituskertarekisteri.listaaHarjoituskerrat();
+                vanhatHarjoitukset();
+                
             }
 
             if (valinta == 10) {
@@ -274,5 +275,19 @@ public class Kayttoliittyma {
         return liike;
 
 
+    }
+
+    private void vanhatHarjoitukset() {
+        kirjautuneenHarjoituskertarekisteri.listaaHarjoituskerrat();
+        System.out.println("");
+        System.out.println("Valitse harjoitus jota haluat tarkastella (pp.kk.vvvv)");
+        System.out.print("> ");
+        String valittuHarjoitus = lukija.nextLine();
+        Harjoituskerta treeni = kirjautuneenHarjoituskertarekisteri.getHarjoituskerta(valittuHarjoitus);
+        if (treeni!=null){
+            treeni.listaaLiikkeet();
+        } else {
+            System.out.println("Harjoitusta ei löytynyt");
+        }        
     }
 }

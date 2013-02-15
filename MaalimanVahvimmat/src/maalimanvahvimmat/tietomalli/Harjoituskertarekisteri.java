@@ -26,15 +26,28 @@ public class Harjoituskertarekisteri {
     private List<Harjoituskerta> harjoituskerrat;
     private File rekisteritiedosto;
 
-    
     public void lisaaHarjoituskertaRekisteriin(Harjoituskerta treeni) throws IOException {
-        
+
         this.harjoituskerrat.add(treeni);
         kirjoitaRekisteriTiedostoon();
         treeni.tallennaHarjoituskertatiedosto(kayttaja);
     }
 
-    public void kirjoitaRekisteriTiedostoon() throws IOException {
+    public Harjoituskerta getHarjoituskerta(String pvm) {
+
+        for (Harjoituskerta harjoituskerta : harjoituskerrat) {
+            if (harjoituskerta.getPvm().equals(pvm)) {
+                return harjoituskerta;
+            }
+        }
+        return null;
+    }
+    
+
+    
+       
+
+public void kirjoitaRekisteriTiedostoon() throws IOException {
 
         FileWriter kirjoittaja = new FileWriter(rekisteritiedosto);
 
