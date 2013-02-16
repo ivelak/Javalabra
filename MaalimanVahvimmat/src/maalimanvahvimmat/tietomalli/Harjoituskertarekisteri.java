@@ -68,7 +68,7 @@ public void kirjoitaRekisteriTiedostoon() throws IOException {
         while (lukija.hasNextLine()) {
             
             String pvm = lukija.nextLine();
-            Loki.d(pvm);
+            
             if (pvm.isEmpty()){
                 break;
             }

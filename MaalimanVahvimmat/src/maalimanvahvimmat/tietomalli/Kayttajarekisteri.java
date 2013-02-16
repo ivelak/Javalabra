@@ -15,6 +15,7 @@ import maalimanvahvimmat.tietomalli.Kayttaja;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import maalimanvahvimmat.Loki;
 
 public class Kayttajarekisteri {
 
@@ -25,6 +26,7 @@ public class Kayttajarekisteri {
      * @throws IOException
      */
     public static void alusta(File alustettava) throws IOException {
+        Loki.d("@ Kayttajarekisteri.alusta");
 
         FileWriter kirjoittaja = new FileWriter(alustettava);
         kirjoittaja.write("");
@@ -35,11 +37,13 @@ public class Kayttajarekisteri {
     private File rekisteritiedosto;
 
     public Kayttajarekisteri() {
+        Loki.d("@ Kayttajarekisteri");
         this.rekisteri = new ArrayList<Kayttaja>();
 
     }
 
     public Kayttajarekisteri(File tiedosto) throws FileNotFoundException, IOException {
+        Loki.d("@ Kayttajarekisteri(File)");
         this.rekisteri = new ArrayList<Kayttaja>();
         this.rekisteritiedosto = tiedosto;
         lueRekisterista();

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import maalimanvahvimmat.Loki;
 
 /**
  * Luokka liikkeitä varten
@@ -26,6 +27,7 @@ public class Liike {
     
     @Override
     public String toString(){
+        Loki.d("@ Liike.toString"+toistot.size()+","+painot.size());
         String liikedata = this.nimi+": ";
         for (int i = 0; i < toistot.size(); i++) {
             liikedata+=""+toistot.get(i)+"x"+painot.get(i)+"kg ";
@@ -74,22 +76,23 @@ public class Liike {
     }
 
     public Liike (Scanner lukija) {
-        Pattern hahmo = Pattern.compile("\\d+| ");
+   
+        this.nimi = lukija.nextLine();
         
-        this.nimi = lukija.next();
-        lukija.nextLine();
-        while (lukija.hasNext(hahmo)) {
-            int a = Integer.parseInt(lukija.next());
-            toistot.add(a);
-            lukija.skip(" ");
+        this.toistot = lueLuvut(lukija.nextLine());
+        this.painot = lueLuvut(lukija.nextLine());
+        assert (toistot.size()==painot.size());
+        
+    }
+    private static ArrayList<Integer> lueLuvut(String rivi){
+        
+        ArrayList<Integer> tulos = new ArrayList<Integer>();
+        Scanner lukija = new Scanner(rivi);
+        
+        while (lukija.hasNext()){
+            int luku = lukija.nextInt();
+            tulos.add(luku);
         }
-        lukija.nextLine();
-        while (lukija.hasNext(hahmo)) {
-            painot.add(lukija.nextInt());
-            lukija.skip(" ");
-        }
-        if (lukija.hasNextLine()){
-        lukija.nextLine();
-        }
+        return tulos;
     }
 }
