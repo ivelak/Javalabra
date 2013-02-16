@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import maalimanvahvimmat.Kayttoliittyma;
 import maalimanvahvimmat.tietomalli.Harjoituskerta;
 import maalimanvahvimmat.tietomalli.Harjoituskertarekisteri;
 import maalimanvahvimmat.tietomalli.Kayttaja;
@@ -22,17 +23,17 @@ import maalimanvahvimmat.tietomalli.Liike;
  *
  * @author rantapel
  */
-public class Kayttoliittyma {
+public class TekstiKayttoliittyma implements Kayttoliittyma {
 
     private Scanner lukija;
     private Kayttajarekisteri rekisteri;
     private Kayttaja kirjautunut;
     private Harjoituskertarekisteri kirjautuneenHarjoituskertarekisteri;
 
-    private Kayttoliittyma() {
+    private TekstiKayttoliittyma() {
     }
 
-    public Kayttoliittyma(Kayttajarekisteri rekisteri) {
+    public TekstiKayttoliittyma(Kayttajarekisteri rekisteri) {
         this.kirjautunut = null;
         this.rekisteri = rekisteri;
         this.lukija = new Scanner(System.in);
@@ -61,6 +62,7 @@ public class Kayttoliittyma {
      *
      * @throws IOException
      */
+    @Override
     public void kaynnista() throws IOException {
         System.out.println("Tervetuloa!");
         while (true) {
@@ -192,7 +194,7 @@ public class Kayttoliittyma {
                 lisaaHarjoitus();
             } else if (valinta == 2) {
                 vanhatHarjoitukset();
-                
+
             }
 
             if (valinta == 10) {
@@ -284,10 +286,10 @@ public class Kayttoliittyma {
         System.out.print("> ");
         String valittuHarjoitus = lukija.nextLine();
         Harjoituskerta treeni = kirjautuneenHarjoituskertarekisteri.getHarjoituskerta(valittuHarjoitus);
-        if (treeni!=null){
+        if (treeni != null) {
             treeni.listaaLiikkeet();
         } else {
             System.out.println("Harjoitusta ei löytynyt");
-        }        
+        }
     }
 }

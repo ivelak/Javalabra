@@ -96,7 +96,8 @@ public class Kayttajarekisteri {
      * @return
      */
     public boolean tarkistaSalasana(Kayttaja kayttaja, String salasana) {
-        if (kayttaja.getSalasana().equals(salasana)) {
+        
+        if (kayttaja!=null && kayttaja.getSalasana().equals(salasana)) {
             return true;
         }
         return false;
