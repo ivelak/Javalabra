@@ -4,9 +4,14 @@
  */
 package maalimanvahvimmat.kali;
 
+import java.awt.event.ActionEvent;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.JMenuItem;
+import javax.swing.event.MenuListener;
+import java.awt.event.ActionListener;
 import maalimanvahvimmat.tietomalli.Harjoituskertarekisteri;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.MenuEvent;
 import maalimanvahvimmat.Loki;
 import maalimanvahvimmat.tietomalli.Harjoituskerta;
 
@@ -25,6 +30,7 @@ public class Treenit extends javax.swing.JFrame {
         initComponents();
 
         taytaTreenilista();
+        asetaLisaystoiminto();
         
     }
 
@@ -42,6 +48,8 @@ public class Treenit extends javax.swing.JFrame {
         treenilista = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
         treeniData = new javax.swing.JTextPane();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        treeniValikko = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,6 +66,11 @@ public class Treenit extends javax.swing.JFrame {
 
         jSplitPane1.setRightComponent(jScrollPane2);
 
+        treeniValikko.setText("Treeni");
+        jMenuBar1.add(treeniValikko);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -66,7 +79,7 @@ public class Treenit extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
         );
 
         pack();
@@ -74,10 +87,12 @@ public class Treenit extends javax.swing.JFrame {
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextPane treeniData;
+    private javax.swing.JMenu treeniValikko;
     private javax.swing.JList treenilista;
     // End of variables declaration//GEN-END:variables
 
@@ -98,6 +113,26 @@ public class Treenit extends javax.swing.JFrame {
         Harjoituskerta treeni = this.rekisteri.getHarjoituskerta(pvm);
         String treeniTeksti = treeni.listaaLiikkeet();
         treeniData.setText(treeniTeksti);
+        
+    }
+
+    private void asetaLisaystoiminto() {
+        final TreeninLisays l = new TreeninLisays(rekisteri);
+        JMenuItem lisaa= new JMenuItem("lisää treeni");
+        treeniValikko.add(lisaa);
+        
+        lisaa.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                l.setVisible(true);
+                
+                
+            }
+        });
+        
+        //TreeninLisays l = new TreeninLisays();
+        
         
     }
 }

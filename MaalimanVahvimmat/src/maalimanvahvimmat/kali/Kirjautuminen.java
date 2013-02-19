@@ -6,6 +6,9 @@ package maalimanvahvimmat.kali;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import maalimanvahvimmat.Loki;
 import maalimanvahvimmat.tietomalli.Kayttaja;
@@ -25,7 +28,11 @@ public class Kirjautuminen extends javax.swing.JFrame {
 
                 Kayttaja kayttaja = rekisteri.getKayttaja(tunnus);
                 if (kayttaja != null && rekisteri.tarkistaSalasana(kayttaja, salis)) {
-                    kali.asetaKayttaja(kayttaja);
+                    try {
+                        kali.asetaKayttaja(kayttaja);
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(Kirjautuminen.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(Kirjautuminen.this, "Väärä käyttäjätunnus tai salasana");
                 }
