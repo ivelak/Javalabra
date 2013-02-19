@@ -11,48 +11,24 @@ import maalimanvahvimmat.Loki;
 import maalimanvahvimmat.tietomalli.Kayttaja;
 import maalimanvahvimmat.tietomalli.Kayttajarekisteri;
 
-/**
- *
- * @author rantapel
- */
 public class Kirjautuminen extends javax.swing.JFrame {
-    private Kayttaja kirjautunut;
 
-    /**
-     * Creates new form Kirjautuminen
-     */
-    
-    public Kayttaja getKirjautunut(){
-        return this.kirjautunut;
-    }
-    public Kirjautuminen(final Kayttajarekisteri rekisteri) {
-        
+    public Kirjautuminen(final Kayttajarekisteri rekisteri, final GraafinenKayttoliittyma kali) {
+
         initComponents();
-        
-        kirjaudu.addActionListener(new ActionListener() {
 
+        kirjaudu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
                 String tunnus = kayttajatunnus.getText();
                 String salis = new String(salasana.getPassword());
-                
-                Loki.d("@kirjaudu.actionPerformed");
-                Loki.d(kayttajatunnus.getText());
-                Loki.d(salis);
-                
-                if (rekisteri.tarkistaSalasana(rekisteri.getKayttaja(tunnus), salis)){
-                    kirjautunut=rekisteri.getKayttaja(tunnus);
-                  hide();  
-                   
+
+                Kayttaja kayttaja = rekisteri.getKayttaja(tunnus);
+                if (kayttaja != null && rekisteri.tarkistaSalasana(kayttaja, salis)) {
+                    kali.asetaKayttaja(kayttaja);
                 } else {
                     JOptionPane.showMessageDialog(Kirjautuminen.this, "Väärä käyttäjätunnus tai salasana");
                 }
-                
-                
-                
-                
-                
             }
         });
     }
@@ -137,7 +113,6 @@ public class Kirjautuminen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void kirjauduActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kirjauduActionPerformed
-        
     }//GEN-LAST:event_kirjauduActionPerformed
 
     /**
@@ -169,6 +144,7 @@ public class Kirjautuminen extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 //new Kirjautuminen().setVisible(true);
             }
