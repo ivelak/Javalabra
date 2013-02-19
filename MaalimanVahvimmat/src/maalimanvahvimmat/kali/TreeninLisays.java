@@ -22,7 +22,7 @@ public class TreeninLisays extends javax.swing.JFrame {
      */
     public TreeninLisays(Harjoituskertarekisteri rekisteri) {
         this.rekisteri = rekisteri;
-        alustaHarjoitus();
+        
 
         initComponents();
     }
