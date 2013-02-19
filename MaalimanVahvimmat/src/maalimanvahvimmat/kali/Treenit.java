@@ -4,17 +4,28 @@
  */
 package maalimanvahvimmat.kali;
 
+import javax.swing.event.ListSelectionEvent;
+import maalimanvahvimmat.tietomalli.Harjoituskertarekisteri;
+import javax.swing.event.ListSelectionListener;
+import maalimanvahvimmat.Loki;
+import maalimanvahvimmat.tietomalli.Harjoituskerta;
+
 /**
  *
  * @author rantapel
  */
 public class Treenit extends javax.swing.JFrame {
+    private Harjoituskertarekisteri rekisteri;
 
     /**
      * Creates new form Treenit
      */
-    public Treenit() {
+    public Treenit(Harjoituskertarekisteri rekisteri) {
+        this.rekisteri=rekisteri;
         initComponents();
+
+        taytaTreenilista();
+        
     }
 
     /**
@@ -26,56 +37,67 @@ public class Treenit extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        treenilista = new javax.swing.JList();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        treeniData = new javax.swing.JTextPane();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        treenilista.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(treenilista);
+
+        jSplitPane1.setLeftComponent(jScrollPane1);
+
+        jScrollPane2.setViewportView(treeniData);
+
+        jSplitPane1.setRightComponent(jScrollPane2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Treenit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Treenit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Treenit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Treenit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JTextPane treeniData;
+    private javax.swing.JList treenilista;
+    // End of variables declaration//GEN-END:variables
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Treenit().setVisible(true);
+    private void taytaTreenilista() {
+        treenilista.setModel(rekisteri);
+        
+        treenilista.addListSelectionListener(new ListSelectionListener() {
+            
+
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                
+                naytaTreeni((String)treenilista.getSelectedValue());
             }
         });
     }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    // End of variables declaration//GEN-END:variables
+    public void naytaTreeni(String pvm) {
+        Harjoituskerta treeni = this.rekisteri.getHarjoituskerta(pvm);
+        String treeniTeksti = treeni.listaaLiikkeet();
+        treeniData.setText(treeniTeksti);
+        
+    }
 }

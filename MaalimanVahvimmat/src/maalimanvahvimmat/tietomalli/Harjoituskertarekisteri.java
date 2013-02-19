@@ -8,13 +8,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import javax.swing.JList;
 import maalimanvahvimmat.Loki;
+import javax.swing.AbstractListModel;
 
 /**
  * Listaa käyttäjän harjoituskerrat
  *
  */
-public class Harjoituskertarekisteri {
+public class Harjoituskertarekisteri extends AbstractListModel {
 
     public static void alusta(File alustettava) throws IOException {
 
@@ -32,6 +34,7 @@ public class Harjoituskertarekisteri {
         kirjoitaRekisteriTiedostoon();
         treeni.tallennaHarjoituskertatiedosto(kayttaja);
     }
+    
 
     public Harjoituskerta getHarjoituskerta(String pvm) {
 
@@ -86,6 +89,20 @@ public void kirjoitaRekisteriTiedostoon() throws IOException {
         for (Harjoituskerta harjoituskerta : harjoituskerrat) {
             System.out.println(harjoituskerta.getPvm());
         }
+    }
+
+    public List<Harjoituskerta> getRekisteri() {
+        return this.harjoituskerrat;
+    }
+
+    @Override
+    public int getSize() {
+        return this.harjoituskerrat.size();
+    }
+
+    @Override
+    public Object getElementAt(int index) {
+        return this.harjoituskerrat.get(index).getPvm();
     }
     
 }

@@ -287,7 +287,8 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
         String valittuHarjoitus = lukija.nextLine();
         Harjoituskerta treeni = kirjautuneenHarjoituskertarekisteri.getHarjoituskerta(valittuHarjoitus);
         if (treeni != null) {
-            treeni.listaaLiikkeet();
+            System.out.print(treeni.listaaLiikkeet());
+           
         } else {
             System.out.println("Harjoitusta ei löytynyt");
         }

@@ -48,10 +48,12 @@ public class Harjoituskerta {
         liikkeet.add(liike);
     }
 
-    public void listaaLiikkeet() {
+    public String listaaLiikkeet() {
+        String tulos = "";
         for (Liike liike : liikkeet) {
-            System.out.println(liike);
+            tulos+=liike.toString()+"\n";
         }
+        return tulos;
     }
 
     public void tallennaHarjoituskertatiedosto(Kayttaja kayttaja) throws IOException {
@@ -87,5 +89,9 @@ public class Harjoituskerta {
         FileWriter kirjoittaja = new FileWriter(alustettava);
         kirjoittaja.write("");
         kirjoittaja.close();
+    }
+
+    public String getTreeniTekstina() {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 }
