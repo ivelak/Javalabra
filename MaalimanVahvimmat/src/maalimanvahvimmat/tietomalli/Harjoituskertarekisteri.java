@@ -45,6 +45,9 @@ public class Harjoituskertarekisteri extends AbstractListModel {
         }
         return null;
     }
+    public Kayttaja getKayttaja(){
+        return this.kayttaja;
+    }
     
 
     

@@ -9,6 +9,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.JMenuItem;
 import javax.swing.event.MenuListener;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import maalimanvahvimmat.tietomalli.Harjoituskertarekisteri;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.MenuEvent;
@@ -117,7 +119,7 @@ public class Treenit extends javax.swing.JFrame {
     }
 
     private void asetaLisaystoiminto() {
-        final TreeninLisays l = new TreeninLisays(rekisteri);
+        
         JMenuItem lisaa= new JMenuItem("lisää treeni");
         treeniValikko.add(lisaa);
         
@@ -125,9 +127,11 @@ public class Treenit extends javax.swing.JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                TreeninLisays l = new TreeninLisays(rekisteri);
                 l.setVisible(true);
                 
-                
+                taytaTreenilista();
+                                
             }
         });
         

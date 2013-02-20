@@ -91,7 +91,5 @@ public class Harjoituskerta {
         kirjoittaja.close();
     }
 
-    public String getTreeniTekstina() {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
+    
 }

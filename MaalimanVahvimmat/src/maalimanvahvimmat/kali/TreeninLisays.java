@@ -4,6 +4,9 @@
  */
 package maalimanvahvimmat.kali;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import maalimanvahvimmat.tietomalli.Harjoituskertarekisteri;
 import javax.swing.JOptionPane;
 import maalimanvahvimmat.tietomalli.Harjoituskerta;
@@ -38,10 +41,34 @@ public class TreeninLisays extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        jDialog2 = new javax.swing.JDialog();
         lisaaLiike = new javax.swing.JButton();
         valmis = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        lisatytLiikkeet = new javax.swing.JTextArea();
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
+        jDialog2.getContentPane().setLayout(jDialog2Layout);
+        jDialog2Layout.setHorizontalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog2Layout.setVerticalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,9 +86,9 @@ public class TreeninLisays extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        lisatytLiikkeet.setColumns(20);
+        lisatytLiikkeet.setRows(5);
+        jScrollPane1.setViewportView(lisatytLiikkeet);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,15 +120,30 @@ public class TreeninLisays extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void valmisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valmisActionPerformed
-        this.setVisible(false);
+        if (treeni != null) {
+            try {
+                rekisteri.lisaaHarjoituskertaRekisteriin(treeni);
+                treeni.tallennaHarjoituskertatiedosto(rekisteri.getKayttaja());
+
+            } catch (IOException ex) {
+                Logger.getLogger(TreeninLisays.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        this.dispose();
+        
+
+        //this.setVisible(false);
+
+
     }//GEN-LAST:event_valmisActionPerformed
 
     private void lisaaLiikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lisaaLiikeActionPerformed
-        if (this.treeni==null){
+        if (this.treeni == null) {
             alusta();
         }
-        lisaaLiike();
-        
+        treeni.lisaaLiike(lisaaLiike());
+        lisatytLiikkeet.setText(treeni.listaaLiikkeet());
+
     }//GEN-LAST:event_lisaaLiikeActionPerformed
 
     /**
@@ -139,9 +181,11 @@ public class TreeninLisays extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialog2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton lisaaLiike;
+    private javax.swing.JTextArea lisatytLiikkeet;
     private javax.swing.JButton valmis;
     // End of variables declaration//GEN-END:variables
 
@@ -150,18 +194,17 @@ public class TreeninLisays extends javax.swing.JFrame {
         this.treeni = new Harjoituskerta(pvm);
     }
 
-    private void lisaaLiike() {
-        
+    private Liike lisaaLiike() {
+
         String nimi = JOptionPane.showInputDialog("Liikkeen nimi:");
         Liike liike = new Liike(nimi);
 
         while (true) {
-            System.out.println("Lisää toistot ja painot, tyhjä rivi lopettaa");
-            System.out.println("Toistomäärä: ");
+
             int toisto;
             int paino;
 
-            String rivi = lukija.nextLine();
+            String rivi = JOptionPane.showInputDialog("Lisää toistot ja painot, tyhjä kenttä lopettaa" + "\n" + "Toistomäärä:");
             try {
                 toisto = Integer.parseInt(rivi);
             } catch (NumberFormatException e) {
@@ -169,9 +212,7 @@ public class TreeninLisays extends javax.swing.JFrame {
             }
 
 
-
-            System.out.println("Paino: ");
-            rivi = lukija.nextLine();
+            rivi = JOptionPane.showInputDialog("Lisää toistot ja painot, tyhjä kenttä lopettaa" + "\n" + "Painot:");
             try {
                 paino = Integer.parseInt(rivi);
             } catch (NumberFormatException e) {
