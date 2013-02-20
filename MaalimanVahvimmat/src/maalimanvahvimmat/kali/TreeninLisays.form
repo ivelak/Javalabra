@@ -56,12 +56,15 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="lisaaLiike" max="32767" attributes="0"/>
-                  <Component id="valmis" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="lisaaLiike" max="32767" attributes="0"/>
+                      <Component id="valmis" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="motivaattori" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="289" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="267" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -74,6 +77,8 @@
                   <Group type="102" attributes="0">
                       <Component id="lisaaLiike" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="motivaattori" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="valmis" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" pref="276" max="32767" attributes="0"/>
@@ -115,5 +120,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="motivaattori">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Motivaattori"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="motivaattoriActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

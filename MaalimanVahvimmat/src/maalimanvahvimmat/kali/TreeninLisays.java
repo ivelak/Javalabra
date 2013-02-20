@@ -47,6 +47,7 @@ public class TreeninLisays extends javax.swing.JFrame {
         valmis = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lisatytLiikkeet = new javax.swing.JTextArea();
+        motivaattori = new javax.swing.JButton();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -90,17 +91,26 @@ public class TreeninLisays extends javax.swing.JFrame {
         lisatytLiikkeet.setRows(5);
         jScrollPane1.setViewportView(lisatytLiikkeet);
 
+        motivaattori.setText("Motivaattori");
+        motivaattori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                motivaattoriActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lisaaLiike, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(valmis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(lisaaLiike, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(valmis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(motivaattori))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -111,6 +121,8 @@ public class TreeninLisays extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lisaaLiike)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(motivaattori)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(valmis))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
                 .addContainerGap())
@@ -145,6 +157,15 @@ public class TreeninLisays extends javax.swing.JFrame {
         lisatytLiikkeet.setText(treeni.listaaLiikkeet());
 
     }//GEN-LAST:event_lisaaLiikeActionPerformed
+
+    private void motivaattoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motivaattoriActionPerformed
+        final String Url = "http://www.youtube.com/watch?v=rRU0DPxHH8Q";
+        try {
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(Url));
+        } catch (IOException ex) {
+            Logger.getLogger(TreeninLisays.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_motivaattoriActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,6 +207,7 @@ public class TreeninLisays extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton lisaaLiike;
     private javax.swing.JTextArea lisatytLiikkeet;
+    private javax.swing.JButton motivaattori;
     private javax.swing.JButton valmis;
     // End of variables declaration//GEN-END:variables
 
