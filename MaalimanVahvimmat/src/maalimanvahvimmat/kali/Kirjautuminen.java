@@ -38,6 +38,16 @@ public class Kirjautuminen extends javax.swing.JFrame {
                 }
             }
         });
+        
+        uusiTunnus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                UudenKayttajanLuominen ukl = new UudenKayttajanLuominen(rekisteri);
+                ukl.setVisible(true);
+            }
+        
+        
+        });
     }
 
     /**
@@ -55,6 +65,7 @@ public class Kirjautuminen extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         kirjaudu = new javax.swing.JButton();
+        uusiTunnus = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +82,13 @@ public class Kirjautuminen extends javax.swing.JFrame {
             }
         });
 
+        uusiTunnus.setText("Luo uusi tunnus");
+        uusiTunnus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uusiTunnusActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,18 +102,18 @@ public class Kirjautuminen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(kirjaudu))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(kayttajatunnus, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(kayttajatunnus, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(salasana, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(kirjaudu)
+                                    .addComponent(uusiTunnus, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
+                                .addGap(8, 8, 8))
+                            .addComponent(salasana))))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -113,7 +131,9 @@ public class Kirjautuminen extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(kirjaudu)
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(uusiTunnus)
+                .addGap(43, 43, 43))
         );
 
         pack();
@@ -121,6 +141,12 @@ public class Kirjautuminen extends javax.swing.JFrame {
 
     private void kirjauduActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kirjauduActionPerformed
     }//GEN-LAST:event_kirjauduActionPerformed
+
+    private void uusiTunnusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uusiTunnusActionPerformed
+        
+        
+        
+    }//GEN-LAST:event_uusiTunnusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,5 +190,6 @@ public class Kirjautuminen extends javax.swing.JFrame {
     private javax.swing.JTextField kayttajatunnus;
     private javax.swing.JButton kirjaudu;
     private javax.swing.JPasswordField salasana;
+    private javax.swing.JButton uusiTunnus;
     // End of variables declaration//GEN-END:variables
 }

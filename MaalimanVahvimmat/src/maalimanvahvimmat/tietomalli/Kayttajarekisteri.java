@@ -55,10 +55,11 @@ public class Kayttajarekisteri {
 
         luoKayttajatiedosto(kayttaja);
         File harjoitusrekisteritiedosto = new File(kayttaja.getNimi() + "-harjoitukset.txt");
-        Harjoituskertarekisteri harjoitusrekisteri = new Harjoituskertarekisteri(kayttaja, harjoitusrekisteritiedosto);
+        
         if (!harjoitusrekisteritiedosto.exists()){
-        harjoitusrekisteri.alusta(harjoitusrekisteritiedosto);
+        Harjoituskertarekisteri.alusta(harjoitusrekisteritiedosto);
         }
+        Harjoituskertarekisteri harjoitusrekisteri = new Harjoituskertarekisteri(kayttaja, harjoitusrekisteritiedosto);
 
         kirjoitaKayttajatRekisteritiedostoon();
     }

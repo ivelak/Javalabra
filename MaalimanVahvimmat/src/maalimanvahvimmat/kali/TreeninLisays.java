@@ -122,14 +122,14 @@ public class TreeninLisays extends javax.swing.JFrame {
     private void valmisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valmisActionPerformed
         if (treeni != null) {
             try {
-                rekisteri.lisaaHarjoituskertaRekisteriin(treeni);
                 treeni.tallennaHarjoituskertatiedosto(rekisteri.getKayttaja());
+                rekisteri.lisaaHarjoituskertaRekisteriin(treeni);               
 
             } catch (IOException ex) {
                 Logger.getLogger(TreeninLisays.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        this.dispose();
+        this.setVisible(false);
         
 
         //this.setVisible(false);
