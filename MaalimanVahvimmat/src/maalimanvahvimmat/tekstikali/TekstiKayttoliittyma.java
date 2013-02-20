@@ -243,41 +243,7 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
         }
     }
 
-    private Liike lisaaLiike() {
-        System.out.println("Liikkeen nimi:");
-        System.out.println("> ");
-        String nimi = lukija.nextLine();
-        Liike liike = new Liike(nimi);
-
-        while (true) {
-            System.out.println("Lisää toistot ja painot, tyhjä rivi lopettaa");
-            System.out.println("Toistomäärä: ");
-            int toisto;
-            int paino;
-
-            String rivi = lukija.nextLine();
-            try {
-                toisto = Integer.parseInt(rivi);
-            } catch (NumberFormatException e) {
-                break;
-            }
-
-
-
-            System.out.println("Paino: ");
-            rivi = lukija.nextLine();
-            try {
-                paino = Integer.parseInt(rivi);
-            } catch (NumberFormatException e) {
-                break;
-            }
-            liike.lisaaToistoJaPaino(toisto, paino);
-
-        }
-        return liike;
-
-
-    }
+     
 
     private void vanhatHarjoitukset() {
         kirjautuneenHarjoituskertarekisteri.listaaHarjoituskerrat();
