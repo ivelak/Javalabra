@@ -20,12 +20,13 @@ public class TreeninLisays extends javax.swing.JFrame {
 
     private Harjoituskertarekisteri rekisteri;
     private Harjoituskerta treeni = null;
+    
 
     /**
      * Creates new form TreeninLisays
      */
     public TreeninLisays(Harjoituskertarekisteri rekisteri) {
-
+       
         this.rekisteri = rekisteri;
 
 
@@ -141,8 +142,9 @@ public class TreeninLisays extends javax.swing.JFrame {
                 Logger.getLogger(TreeninLisays.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        Treenit t = new Treenit(rekisteri);
         this.setVisible(false);
-        
+        t.setVisible(true);
 
         //this.setVisible(false);
 
