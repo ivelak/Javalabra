@@ -20,13 +20,12 @@ public class TreeninLisays extends javax.swing.JFrame {
 
     private Harjoituskertarekisteri rekisteri;
     private Harjoituskerta treeni = null;
-    
 
     /**
      * Creates new form TreeninLisays
      */
     public TreeninLisays(Harjoituskertarekisteri rekisteri) {
-       
+
         this.rekisteri = rekisteri;
 
 
@@ -136,7 +135,7 @@ public class TreeninLisays extends javax.swing.JFrame {
         if (treeni != null) {
             try {
                 treeni.tallennaHarjoituskertatiedosto(rekisteri.getKayttaja());
-                rekisteri.lisaaHarjoituskertaRekisteriin(treeni);               
+                rekisteri.lisaaHarjoituskertaRekisteriin(treeni);
 
             } catch (IOException ex) {
                 Logger.getLogger(TreeninLisays.class.getName()).log(Level.SEVERE, null, ex);
@@ -214,14 +213,24 @@ public class TreeninLisays extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void alusta() {
+
         String pvm = JOptionPane.showInputDialog("Anna harjoituksen päivämäärä (pp.kk.vvvv)");
+        if (pvm.isEmpty()) {
+            alusta();
+        }
         this.treeni = new Harjoituskerta(pvm);
     }
 
     private Liike lisaaLiike() {
-
-        String nimi = JOptionPane.showInputDialog("Liikkeen nimi:");
-        Liike liike = new Liike(nimi);
+        String nimi;
+        Liike liike;
+        while (true) {
+            nimi = JOptionPane.showInputDialog("Liikkeen nimi:");
+            if (!nimi.isEmpty()) {
+                break;
+            }
+        }
+        liike = new Liike(nimi);
 
         while (true) {
 
