@@ -31,6 +31,20 @@ Näyttää siltä että projekti on vietävä loppuun laitoksen koneella.
 Aloin toteuttamaan ObjectOutputStreamia ja ObjectInputStreamia saadakseni Kayttajarekistrein tallennetuksi erilliseen .tmp-tiedostoon. Tällä hetkellä ohjelma ei käynnisty ollenkaan.
 
 29.1.2013
-12.00-
+12.00-16
 testien tekoa
 selvittelyä miksei tiedostoon tallentaminen onnistu: ohjelma käynnistyy kerran, mutta ei enää uudestaan. Ei jotenkin kykene lukemaan tiedostoa.
+
+30.1.2013
+14-19
+Muutin tavan tallentaa käyttäjärekisterin FileOutputStreamin sijaan tekstitiedostoihin. Ohjelmaa käynnistettäessä käyttäjärekisteristä haetaan riveittäin käyttäjät joiden nimien mukaan luodaan käyttäjät käyttäjän omasta tekstitiedostosta. ei vielä toimi täysin, ongelmia tiedostoon kirjoittamisen kanssa.
+
+Uusi luokkakaavio.
+
+31.1.2013
+12-17
+käyttäjärekisteritiedoston kirjoitus ja lukeminen onnistuu
+
+4.2.2013
+Harjoituskertarekisterin ja Harjoituskerran suunnittelua.
+Pähkäilyä miten olisi fiksuinta tallentaa jotta lukeminen olisi helppoa.

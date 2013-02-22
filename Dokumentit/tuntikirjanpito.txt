@@ -41,3 +41,57 @@ Muutin tavan tallentaa käyttäjärekisterin FileOutputStreamin sijaan tekstitie
 
 Uusi luokkakaavio.
 
+31.1.2013
+12-17
+käyttäjärekisteritiedoston kirjoitus ja lukeminen onnistuu
+
+4.2.2013
+15-18
+Harjoituskertarekisterin ja Harjoituskerran suunnittelua.
+Pähkäilyä miten olisi fiksuinta tallentaa jotta lukeminen olisi helppoa.
+
+5.2.2013
+18-22
+Deadlineen liittyviä juttuja
+
+7.2.2013
+15-19
+Samaa kuin maanantaina, ei tallennu fiksusti.
+
+8.2.2013
+14-19.30
+Tallentaa harjoituskertarekisterin nyt oikein sekä liikkeet rekisteritiedostoon
+
+9.-14.2.2013
+Ei mitään koodausta, syy: mies kipeänä.
+
+14.2.2013
+edellisen tiistain deadlineen (joka saatu siirrettyä tälle päivälle)
+liittyvien juttujen tekemistä. tekstikäli tehty valmiiksi.
+
+15.2.2013
+16-20
+tekstikälin bugeja korjattu.
+GUIn tekeminen aloitettu
+
+18.2.2013
+12-18
+GUIn tekemistä
+
+19.2.2013
+15-19
+GUIn tekemistä
+
+20.2.2013
+14-18.30
+GUIn tekemistä, bugien korjausta.
+
+21.2.2013
+13-15
+viimeisen bugin korjaus. DEMO
+
+22.2.2013
+17-22
+JavaDocin viimeistelyä, Rakennekuvaus, käyttöohje, Testejä.
+Palautus
+
