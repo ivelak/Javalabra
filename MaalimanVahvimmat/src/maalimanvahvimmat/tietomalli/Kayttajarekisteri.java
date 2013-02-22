@@ -17,14 +17,15 @@ import java.util.List;
 import java.util.Scanner;
 import maalimanvahvimmat.Loki;
 
+/**
+ * Luokka pitää muistissaan listan käyttäjistä ja luo kayttajarekisteri.txt
+ * tiedoston pohjalta Kayttaja-oliot ohjelman käynnistyessä.
+ */
 public class Kayttajarekisteri {
-
-    /**
-     * alusta-metodi luo uuden kayttajarekisteri.txt-tiedoston.
-     *
-     * @param alustettava
-     * @throws IOException
+    /*
+     * luo tyhjän kayttajarekisteri.txt-tiedoston.
      */
+
     public static void alusta(File alustettava) throws IOException {
         Loki.d("@ Kayttajarekisteri.alusta");
 
@@ -37,39 +38,45 @@ public class Kayttajarekisteri {
     private File rekisteritiedosto;
 
     public Kayttajarekisteri() {
-        Loki.d("@ Kayttajarekisteri");
+
         this.rekisteri = new ArrayList<Kayttaja>();
 
     }
 
     public Kayttajarekisteri(File tiedosto) throws FileNotFoundException, IOException {
-        Loki.d("@ Kayttajarekisteri(File)");
+
         this.rekisteri = new ArrayList<Kayttaja>();
         this.rekisteritiedosto = tiedosto;
         lueRekisterista();
     }
-
+    /*
+     * lisää Kayttaja-olion ArrayListiin, sekä alustaa käyttäjälle harjoitusrekisteritiedoston
+     */
     public void lisaaKayttaja(Kayttaja kayttaja) throws IOException {
 
         this.rekisteri.add(kayttaja);
 
         luoKayttajatiedosto(kayttaja);
         File harjoitusrekisteritiedosto = new File(kayttaja.getNimi() + "-harjoitukset.txt");
-        
-        if (!harjoitusrekisteritiedosto.exists()){
-        Harjoituskertarekisteri.alusta(harjoitusrekisteritiedosto);
+
+        if (!harjoitusrekisteritiedosto.exists()) {
+            Harjoituskertarekisteri.alusta(harjoitusrekisteritiedosto);
         }
         Harjoituskertarekisteri harjoitusrekisteri = new Harjoituskertarekisteri(kayttaja, harjoitusrekisteritiedosto);
 
         kirjoitaKayttajatRekisteritiedostoon();
     }
-
+    /*
+     * poistaa käyttäjän listasta
+     */
     public void poistaKayttaja(Kayttaja kayttaja) {
         if (this.rekisteri.contains(kayttaja)) {
             this.rekisteri.remove(kayttaja);
         }
     }
-
+    /*
+     * tarkistaa onko annettua Kayttaja-olioa olemassa
+     */
     public boolean onkoKayttajaa(String kayttaja) {
         for (Kayttaja kayttaja1 : rekisteri) {
             if (kayttaja1.getNimi().equals(kayttaja)) {
@@ -88,17 +95,15 @@ public class Kayttajarekisteri {
         return null;
     }
 
-    /**
-     * tarkastaSalasana-metodi tarkistaa täsmääkö annettu salasana kyseiseen
+    /*
+     * tarkistaa täsmääkö annettu salasana kyseiseen
      * käyttäjään.
      *
-     * @param kayttaja
-     * @param salasana
-     * @return
+     * 
      */
     public boolean tarkistaSalasana(Kayttaja kayttaja, String salasana) {
-        
-        if (kayttaja!=null && kayttaja.getSalasana().equals(salasana)) {
+
+        if (kayttaja != null && kayttaja.getSalasana().equals(salasana)) {
             return true;
         }
         return false;
@@ -117,13 +122,10 @@ public class Kayttajarekisteri {
         return tulos.substring(2);
     }
 
-    /**
-     * luoKayttajatiedosto-metodi luo uuden tekstitiedoston uudelle
+    /*
+     * luo uuden tekstitiedoston uudelle
      * käyttäjätunnukselle. Tekstitiedostosta luetaan käyttäjätiedot ohjelmaa
-     * avattaessa.
-     *
-     * @param kayttaja
-     * @throws IOException
+     * avattaessa. 
      */
     private void luoKayttajatiedosto(Kayttaja kayttaja) throws IOException {
 
@@ -140,10 +142,8 @@ public class Kayttajarekisteri {
     }
 
     /**
-     * kirjoitaKayttajatRekisteritiedostoon -metodi
-     *
-     * @param kayttaja
-     * @throws IOException
+     * kirjoittaa Kayttaja-oliot rekisteritiedostoon kayttajarekisteri.txt.
+     * kirjoitetaan olioiden nimet tiedostoon omille riveilleen.        
      */
     private void kirjoitaKayttajatRekisteritiedostoon() throws IOException {
 
@@ -155,7 +155,9 @@ public class Kayttajarekisteri {
 
         kirjoittaja.close();
     }
-
+    /*
+     * Lukee rekisteritiedostosta käyttäjien nimet ja kutsuu kullekin lueKayttajatiedosto-metodia
+     */
     private void lueRekisterista() throws FileNotFoundException, IOException {
         Scanner lukija = new Scanner(rekisteritiedosto);
 
@@ -165,7 +167,9 @@ public class Kayttajarekisteri {
         }
         lukija.close();
     }
-
+    /*
+     * lukee annetun merkkijonon mukaisen käyttäjätiedoston ja luo sen mukaisesti uuden Kayttaja-olion.
+     */
     private void lueKayttajatiedosto(String kayttajaNimi) throws FileNotFoundException, IOException {
         File kayttajaTiedosto = new File(kayttajaNimi + ".txt");
         Scanner lukija = new Scanner(kayttajaTiedosto);
@@ -184,6 +188,4 @@ public class Kayttajarekisteri {
 
         lisaaKayttaja(palautettava);
     }
-
-    
 }

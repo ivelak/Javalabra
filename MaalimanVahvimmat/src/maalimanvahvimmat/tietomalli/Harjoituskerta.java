@@ -1,14 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package maalimanvahvimmat.tietomalli;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -43,11 +39,15 @@ public class Harjoituskerta {
     public String getPvm() {
         return this.pvm;
     }
-
+    /*
+     * lisää Liike-olion Harjoituskertaan
+     */
     public void lisaaLiike(Liike liike) {
         liikkeet.add(liike);
     }
-
+    /*
+     * Palauttaa merkkijonona Harjoituskertaan lisätyt Liikkeet
+     */
     public String listaaLiikkeet() {
         String tulos = "";
         for (Liike liike : liikkeet) {
@@ -55,7 +55,11 @@ public class Harjoituskerta {
         }
         return tulos;
     }
-
+    
+    /*
+     * Kirjoittaa .txt-tiedoston harjoituskerrasta nimellä: päivämäärä-käyttäjätunnus.txt (esim. 01.01.2013-testaaja.txt).
+     * Kutsuu kunkin Liike-olion omaa kirjoitaTiedostoon-metodia.
+     */
     public void tallennaHarjoituskertatiedosto(Kayttaja kayttaja) throws IOException {
         File treenitiedosto = new File(getPvm() + "-" + kayttaja.getNimi() + ".txt");
         FileWriter kirjoittaja = new FileWriter(treenitiedosto);
@@ -64,25 +68,16 @@ public class Harjoituskerta {
             liike.kirjoitaTiedostoon(kirjoittaja);
         }
             
-            /*kirjoittaja.write(liike.getNimi() + "\n");
-        for (int i = 0; i < liike.getToistot().size(); i++) {
-            String a = ""+liike.getToistot().get(i);
-            kirjoittaja.write(a);
-            kirjoittaja.write(" ");
-        }
-        kirjoittaja.write("\n");
-        for (int i = 0; i < liike.getPainot().size(); i++) {
-            String a = ""+liike.getPainot().get(i);
-            kirjoittaja.write(a);
-            kirjoittaja.write(" ");
-        }
-        kirjoittaja.write("\n");
-    }*/
+           
         kirjoittaja.close();
 
            
         
     }
+    
+    /*
+     * Luo harjoituskertatiedoston
+     */
 
     public static void alusta(File alustettava) throws IOException {
         

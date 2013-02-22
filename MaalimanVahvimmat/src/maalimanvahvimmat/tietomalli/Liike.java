@@ -9,9 +9,9 @@ import java.util.regex.Pattern;
 import maalimanvahvimmat.Loki;
 
 /**
- * Luokka liikkeitä varten
+ * Luokka liikkeitä varten.
+ * Tallentaa liikkeen nimen, sekä ks. liikkeen toisto sekä painomäärät listoihin.
  *
- * @author rantapel
  */
 public class Liike {
 
@@ -38,6 +38,9 @@ public class Liike {
     public String getNimi() {
         return this.nimi;
     }
+    /*
+     * Lisää parametrinä annetut toisto- sekä painomäärän listoihin.
+     */
     public void lisaaToistoJaPaino(int toisto, int paino){
         toistot.add(toisto);
         painot.add(paino);
@@ -49,15 +52,10 @@ public class Liike {
         return this.painot;
     }
 
-    /*public void listaaLiike() {
-     System.out.println();
-     System.out.println(getNimi() + ":");
-     System.out.println("");
-     for (int i = 0; i < sarjat; i++) {
-     System.out.print(toistot[i] + " x ");
-     System.out.println(painot[i] + " kg");
-     }
-     }*/
+    /*
+     * Kirjoittaa Liike-olion harjoituskertatiedostoon. Tiedosto on .txt-tiedosto, johon metodi kirjoittaa järjestyksessä
+     * liikkeen nimi, toistot, painot kaikki kolme omille riveilleen.
+     */
     void kirjoitaTiedostoon(FileWriter kirjoittaja) throws IOException {
         kirjoittaja.write(getNimi());
         kirjoittaja.write("\r\n");
@@ -84,6 +82,9 @@ public class Liike {
         assert (toistot.size()==painot.size());
         
     }
+    /*
+     * palauttaa annetun merkkijonon luvut.
+     */
     private static ArrayList<Integer> lueLuvut(String rivi){
         
         ArrayList<Integer> tulos = new ArrayList<Integer>();

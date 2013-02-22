@@ -16,12 +16,11 @@ import maalimanvahvimmat.tietomalli.Kayttaja;
 import maalimanvahvimmat.tietomalli.Liike;
 
 /**
- * Kayttoliittyma-luokka.
+ * TekstiKayttoliittyma-luokka.
  *
  * Luo tekstikäyttöliittymän jonka kautta käyttäjä pystyy hallitsemaan
- * sovellusta.
+ * sovellusta tekstipohjalla. Toteuttaa Kayttoliittyma-rajapinnan.
  *
- * @author rantapel
  */
 public class TekstiKayttoliittyma implements Kayttoliittyma {
 
@@ -41,9 +40,8 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
     }
 
     /**
-     * päävalikko
+     * päävalikko.
      *
-     * @return
      */
     private int valitseToiminto() {
         System.out.println("Valitse seuraavista:");
@@ -58,9 +56,8 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
     }
 
     /**
-     * Metodi jolla sovellus käynnistetään
+     * Metodi jolla päävalikko käynnistetään.
      *
-     * @throws IOException
      */
     @Override
     public void kaynnista() throws IOException {
@@ -119,7 +116,10 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
             }
         }
     }
-
+    /*
+     * Kutsuu kysyKayttajatunnusUudeltaKayttajalta()- sekä kysySalasanaUudeltaKayttajalta() -metodeita ja luo uuden Kayttaja-olion niiden 
+     * palauttamien merkkijonojen mukaan. Lisää Kayttajan Kayttajarekisteriin.
+     */
     public void lisaaKayttaja() throws IOException {
         String nimi = kysyKayttajatunnusUudeltaKayttajalta();
         String salasana = kysySalasanaUudeltaKayttajalta();
@@ -129,7 +129,10 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
         rekisteri.lisaaKayttaja(uusiKayttaja);
 
     }
-
+    
+    /*
+     * Kysyy salasanaa uudelta käyttäjältä ja palauttaa sen mikäli ehdot toteutuvat.
+     */
     private String kysySalasanaUudeltaKayttajalta() {
         String salasana;
         while (true) {
@@ -150,7 +153,9 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
         }
         return salasana;
     }
-
+    /*
+     * Kysyy käyttäjätunnusta uudelta käyttäjältä ja palauttaa sen merkkijonona mikäli ehdot toteutuvat.
+     */
     private String kysyKayttajatunnusUudeltaKayttajalta() {
         String nimi;
         while (true) {
@@ -168,11 +173,13 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
         }
         return nimi;
     }
-
+    
     private void listaaKayttajat() {
         System.out.println(rekisteri);
     }
-
+    /*
+     * Antaa ohjeet kirjautuneelle.
+     */
     private int KirjautuneenToiminnot() {
         System.out.println("1. Lisää harjoitus");
         System.out.println("2. Tarkastele vanhoja harjoituksia");
@@ -183,7 +190,7 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
         return valinta;
     }
 
-    /**
+    /*
      * Valikko kirjautunutta käyttäjää varten.
      */
     private void kirjautuneenValikko() throws IOException {
@@ -202,7 +209,10 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
             }
         }
     }
-
+    /*
+     * Kysyy tarvittavat tiedot harjoituskertaa varten ja luo Harjoituskerta-olion.
+     * kutsuu liikevalikko()-metodia.
+     */
     private void lisaaHarjoitus() throws IOException {
         System.out.println("Aseta päivämäärä (muotoa pp.kk.vvvv)");
         System.out.print("> ");
@@ -219,7 +229,9 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
 
 
     }
-
+    /*
+     * Valikko yksittäisen harjoituksen hallintaan.
+     */
     private void liikevalikko(Harjoituskerta treeni) throws IOException {
         while (true) {
 
@@ -242,7 +254,9 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
             }
         }
     }
-
+    /*
+     * Kysyy liikkeen tiedot ja palauttaa luomansa Liike-olion.
+     */
     private Liike lisaaLiike() {
 
         System.out.println("Anna liikkeen nimi: ");
@@ -276,7 +290,9 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
         }
         return liike;
     }
-
+    /*
+     * metodi vanhojen harjoitusten tarkastelua varten.
+     */
     private void vanhatHarjoitukset() {
         kirjautuneenHarjoituskertarekisteri.listaaHarjoituskerrat();
         System.out.println("");

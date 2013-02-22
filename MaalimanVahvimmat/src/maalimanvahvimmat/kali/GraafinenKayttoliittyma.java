@@ -1,11 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package maalimanvahvimmat.kali;
 
-import java.awt.event.HierarchyEvent;
-import java.awt.event.HierarchyListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import maalimanvahvimmat.Kayttoliittyma;
@@ -14,8 +9,11 @@ import maalimanvahvimmat.tietomalli.Kayttaja;
 import maalimanvahvimmat.tietomalli.Kayttajarekisteri;
 
 /**
+ * GraafinenKayttoliittyma-luokka.
  *
- * @author rantapel
+ * Luo graafisen käyttöliittymän jonka kautta käyttäjä pystyy hallitsemaan
+ * sovellusta graafisella pohjalla. Toteuttaa Kayttoliittyma-rajapinnan.
+ *
  */
 public class GraafinenKayttoliittyma implements Kayttoliittyma {  
     private Kayttajarekisteri rekisteri;
