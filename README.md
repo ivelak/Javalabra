@@ -1,6 +1,6 @@
 Javalabra
 =========
 
-vähän sisältöä tähän.
+Projekti Maailmanvahvimmat-treenipäiväkirja.
 
 
