@@ -3,10 +3,9 @@ package maalimanvahvimmat.tietomalli;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-import java.util.regex.Pattern;
-import maalimanvahvimmat.Loki;
+
+
 
 /**
  * Luokka liikkeitä varten.
@@ -27,7 +26,7 @@ public class Liike {
     
     @Override
     public String toString(){
-        Loki.d("@ Liike.toString"+toistot.size()+","+painot.size());
+        
         String liikedata = this.nimi+": ";
         for (int i = 0; i < toistot.size(); i++) {
             liikedata+=""+toistot.get(i)+"x"+painot.get(i)+"kg ";
@@ -38,7 +37,7 @@ public class Liike {
     public String getNimi() {
         return this.nimi;
     }
-    /*
+    /**
      * Lisää parametrinä annetut toisto- sekä painomäärän listoihin.
      */
     public void lisaaToistoJaPaino(int toisto, int paino){
@@ -52,7 +51,7 @@ public class Liike {
         return this.painot;
     }
 
-    /*
+    /**
      * Kirjoittaa Liike-olion harjoituskertatiedostoon. Tiedosto on .txt-tiedosto, johon metodi kirjoittaa järjestyksessä
      * liikkeen nimi, toistot, painot kaikki kolme omille riveilleen.
      */
@@ -82,7 +81,7 @@ public class Liike {
         assert (toistot.size()==painot.size());
         
     }
-    /*
+    /**
      * palauttaa annetun merkkijonon luvut.
      */
     private static ArrayList<Integer> lueLuvut(String rivi){

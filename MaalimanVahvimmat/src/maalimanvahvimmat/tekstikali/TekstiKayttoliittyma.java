@@ -116,7 +116,7 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
             }
         }
     }
-    /*
+    /**
      * Kutsuu kysyKayttajatunnusUudeltaKayttajalta()- sekä kysySalasanaUudeltaKayttajalta() -metodeita ja luo uuden Kayttaja-olion niiden 
      * palauttamien merkkijonojen mukaan. Lisää Kayttajan Kayttajarekisteriin.
      */
@@ -130,7 +130,7 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
 
     }
     
-    /*
+    /**
      * Kysyy salasanaa uudelta käyttäjältä ja palauttaa sen mikäli ehdot toteutuvat.
      */
     private String kysySalasanaUudeltaKayttajalta() {
@@ -153,7 +153,7 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
         }
         return salasana;
     }
-    /*
+    /**
      * Kysyy käyttäjätunnusta uudelta käyttäjältä ja palauttaa sen merkkijonona mikäli ehdot toteutuvat.
      */
     private String kysyKayttajatunnusUudeltaKayttajalta() {
@@ -177,7 +177,7 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
     private void listaaKayttajat() {
         System.out.println(rekisteri);
     }
-    /*
+    /**
      * Antaa ohjeet kirjautuneelle.
      */
     private int KirjautuneenToiminnot() {
@@ -190,7 +190,7 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
         return valinta;
     }
 
-    /*
+    /**
      * Valikko kirjautunutta käyttäjää varten.
      */
     private void kirjautuneenValikko() throws IOException {
@@ -209,7 +209,7 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
             }
         }
     }
-    /*
+    /**
      * Kysyy tarvittavat tiedot harjoituskertaa varten ja luo Harjoituskerta-olion.
      * kutsuu liikevalikko()-metodia.
      */
@@ -229,7 +229,7 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
 
 
     }
-    /*
+    /**
      * Valikko yksittäisen harjoituksen hallintaan.
      */
     private void liikevalikko(Harjoituskerta treeni) throws IOException {
@@ -254,7 +254,7 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
             }
         }
     }
-    /*
+    /**
      * Kysyy liikkeen tiedot ja palauttaa luomansa Liike-olion.
      */
     private Liike lisaaLiike() {
@@ -290,7 +290,7 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
         }
         return liike;
     }
-    /*
+    /**
      * metodi vanhojen harjoitusten tarkastelua varten.
      */
     private void vanhatHarjoitukset() {

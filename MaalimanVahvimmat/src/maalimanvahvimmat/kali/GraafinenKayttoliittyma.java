@@ -27,6 +27,9 @@ public class GraafinenKayttoliittyma implements Kayttoliittyma {
         this.k=new Kirjautuminen(rekisteri, this);
         
     }
+    /**
+     * alustaa Kayttaja-olion sekä asettaa Treenit-olion näkyviin.
+     */
     public void asetaKayttaja(Kayttaja kayttaja) throws FileNotFoundException {
         this.kayttaja = kayttaja;
         this.t=new Treenit(new Harjoituskertarekisteri(kayttaja, new File(kayttaja.getNimi() + "-harjoitukset.txt")));
@@ -35,6 +38,9 @@ public class GraafinenKayttoliittyma implements Kayttoliittyma {
     }
    
     @Override
+    /**
+     * avaa Kirjautuminen-näkymän.
+     */
     public void kaynnista(){
         k.setVisible(true);
         

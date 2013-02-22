@@ -1,10 +1,9 @@
 package maalimanvahvimmat.tietomalli;
 
+/**
+ * Luo Kayttaja-olion. Tallentaa käyttäjän nimen, salasana, iän painon ja pituuden.
+ */
 public class Kayttaja {
-    
-    /**
-     * Luo Kayttaja-olion
-     */
 
     private String nimi;
     private String salasana;
@@ -23,7 +22,8 @@ public class Kayttaja {
     public void setIka(int ika) {
         this.ika = ika;
     }
-    public void setSalasana(String salasana){
+
+    public void setSalasana(String salasana) {
         this.salasana = salasana;
     }
 
@@ -38,6 +38,7 @@ public class Kayttaja {
     public String getNimi() {
         return this.nimi;
     }
+
     public String getSalasana() {
         return this.salasana;
     }
@@ -53,8 +54,9 @@ public class Kayttaja {
     public int getPaino() {
         return this.paino;
     }
+
     @Override
-    public String toString(){
-        return getNimi()+", "+getIka()+" vuotta, "+getPaino()+" kg, "+getPituus()+" cm";
+    public String toString() {
+        return getNimi() + ", " + getIka() + " vuotta, " + getPaino() + " kg, " + getPituus() + " cm";
     }
 }

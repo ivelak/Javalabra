@@ -12,7 +12,6 @@ import java.util.Scanner;
  * Päiväkirjaan lisättävä olio joka sisältää tiedon suorituspäivästä sekä listan
  * liikkeistä joita käyttäjä on kyseisenä päivänä suorittanut.
  *
- * @author rantapel
  */
 public class Harjoituskerta {
 
@@ -39,14 +38,14 @@ public class Harjoituskerta {
     public String getPvm() {
         return this.pvm;
     }
-    /*
-     * lisää Liike-olion Harjoituskertaan
+    /**
+     * lisää Liike-olion Harjoituskertaan.
      */
     public void lisaaLiike(Liike liike) {
         liikkeet.add(liike);
     }
-    /*
-     * Palauttaa merkkijonona Harjoituskertaan lisätyt Liikkeet
+    /**
+     * Palauttaa merkkijonona Harjoituskertaan lisätyt Liikkeet.
      */
     public String listaaLiikkeet() {
         String tulos = "";
@@ -56,7 +55,7 @@ public class Harjoituskerta {
         return tulos;
     }
     
-    /*
+    /**
      * Kirjoittaa .txt-tiedoston harjoituskerrasta nimellä: päivämäärä-käyttäjätunnus.txt (esim. 01.01.2013-testaaja.txt).
      * Kutsuu kunkin Liike-olion omaa kirjoitaTiedostoon-metodia.
      */
@@ -75,8 +74,8 @@ public class Harjoituskerta {
         
     }
     
-    /*
-     * Luo harjoituskertatiedoston
+    /**
+     * Luo harjoituskertatiedoston.
      */
 
     public static void alusta(File alustettava) throws IOException {

@@ -22,7 +22,7 @@ import maalimanvahvimmat.Loki;
  * tiedoston pohjalta Kayttaja-oliot ohjelman käynnistyessä.
  */
 public class Kayttajarekisteri {
-    /*
+    /**
      * luo tyhjän kayttajarekisteri.txt-tiedoston.
      */
 
@@ -32,7 +32,7 @@ public class Kayttajarekisteri {
         FileWriter kirjoittaja = new FileWriter(alustettava);
         kirjoittaja.write("");
         kirjoittaja.close();
-        // luo tyhjän kayttajarekisteri.txt -tiedoston.
+        
     }
     private ArrayList<Kayttaja> rekisteri;
     private File rekisteritiedosto;
@@ -49,7 +49,7 @@ public class Kayttajarekisteri {
         this.rekisteritiedosto = tiedosto;
         lueRekisterista();
     }
-    /*
+    /**
      * lisää Kayttaja-olion ArrayListiin, sekä alustaa käyttäjälle harjoitusrekisteritiedoston
      */
     public void lisaaKayttaja(Kayttaja kayttaja) throws IOException {
@@ -66,7 +66,7 @@ public class Kayttajarekisteri {
 
         kirjoitaKayttajatRekisteritiedostoon();
     }
-    /*
+    /**
      * poistaa käyttäjän listasta
      */
     public void poistaKayttaja(Kayttaja kayttaja) {
@@ -74,7 +74,7 @@ public class Kayttajarekisteri {
             this.rekisteri.remove(kayttaja);
         }
     }
-    /*
+    /**
      * tarkistaa onko annettua Kayttaja-olioa olemassa
      */
     public boolean onkoKayttajaa(String kayttaja) {
@@ -95,7 +95,7 @@ public class Kayttajarekisteri {
         return null;
     }
 
-    /*
+    /**
      * tarkistaa täsmääkö annettu salasana kyseiseen
      * käyttäjään.
      *
@@ -122,7 +122,7 @@ public class Kayttajarekisteri {
         return tulos.substring(2);
     }
 
-    /*
+    /**
      * luo uuden tekstitiedoston uudelle
      * käyttäjätunnukselle. Tekstitiedostosta luetaan käyttäjätiedot ohjelmaa
      * avattaessa. 
@@ -155,7 +155,7 @@ public class Kayttajarekisteri {
 
         kirjoittaja.close();
     }
-    /*
+    /**
      * Lukee rekisteritiedostosta käyttäjien nimet ja kutsuu kullekin lueKayttajatiedosto-metodia
      */
     private void lueRekisterista() throws FileNotFoundException, IOException {
@@ -167,7 +167,7 @@ public class Kayttajarekisteri {
         }
         lukija.close();
     }
-    /*
+    /**
      * lukee annetun merkkijonon mukaisen käyttäjätiedoston ja luo sen mukaisesti uuden Kayttaja-olion.
      */
     private void lueKayttajatiedosto(String kayttajaNimi) throws FileNotFoundException, IOException {

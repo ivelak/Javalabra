@@ -27,7 +27,7 @@ public class Harjoituskertarekisteri extends AbstractListModel {
     private List<Harjoituskerta> harjoituskerrat;
     private File rekisteritiedosto;
 
-    /*
+    /**
      * Lisää Harjoituskerta-olion listaan, sekä kutsuu tallennaHarjoituskertatiedosto-metodia.
      */
     public void lisaaHarjoituskertaRekisteriin(Harjoituskerta treeni) throws IOException {
@@ -52,7 +52,7 @@ public class Harjoituskertarekisteri extends AbstractListModel {
     }
     
     
-    /*
+    /**
      * Kirjoittaa harjoituskertarekisteritiedoston. Muotoa käyttäjä-harjoitukset.txt
      * tiedostossa harjoituskertojen päivämäärät listana.
      */
@@ -66,7 +66,7 @@ public class Harjoituskertarekisteri extends AbstractListModel {
 
         kirjoittaja.close();
     }
-    /*
+    /**
      * Konstruktori lukee rekisteritiedoston ja luo sen viittaamat harjoituskerrat olioiksi.
      */
     public Harjoituskertarekisteri(Kayttaja kayttaja, File rekisteritiedosto) throws FileNotFoundException {
@@ -91,7 +91,7 @@ public class Harjoituskertarekisteri extends AbstractListModel {
 
     }
     
-    /*
+    /**
      * tulostaa harjoituskerrat
      */
     public void listaaHarjoituskerrat() {
