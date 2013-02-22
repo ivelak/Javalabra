@@ -45,6 +45,12 @@ public class Harjoituskerta {
         liikkeet.add(liike);
     }
     /**
+     * Palauttaa liikkeiden lukumäärän
+     */
+    public int liikkeidenMaara(){
+        return this.liikkeet.size();
+    }
+    /**
      * Palauttaa merkkijonona Harjoituskertaan lisätyt Liikkeet.
      */
     public String listaaLiikkeet() {

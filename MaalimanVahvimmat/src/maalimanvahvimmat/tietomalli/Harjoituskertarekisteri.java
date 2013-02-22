@@ -61,7 +61,7 @@ public class Harjoituskertarekisteri extends AbstractListModel {
         FileWriter kirjoittaja = new FileWriter(rekisteritiedosto);
 
         for (Harjoituskerta harjoituskerta : harjoituskerrat) {
-            kirjoittaja.write(harjoituskerta.getPvm() + "\r\n");
+            kirjoittaja.write(harjoituskerta.getPvm() + "\n");
         }
 
         kirjoittaja.close();

@@ -4,6 +4,7 @@
  */
 package maailmanvahvimmat.tietomalli;
 
+import maalimanvahvimmat.tietomalli.Liike;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -30,6 +31,15 @@ public class LiikeTest {
     
     @Before
     public void setUp() {
+    }
+    @Test
+    public void toistojenJaPainojenLiaysToimii(){
+        Liike liike = new Liike("testiliike");
+        liike.lisaaToistoJaPaino(10, 50);
+        liike.lisaaToistoJaPaino(8, 60);
+        assertEquals(2, liike.getToistot().size());
+        assertEquals(2, liike.getPainot().size());
+        
     }
     
     @After
