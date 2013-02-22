@@ -1,0 +1,15 @@
+Projekti - Maailman vahvimmat
+
+Käyttöohje
+
+Ohjelman käynnistyttyä voit valita sisäänkirjautumisen mikäli sinulla on jo luotu profiili.
+Tällöin kirjoitat käyttäjätunnuksesi ja salasanan ja klikkaat Kirjaudu-painiketta.
+Mikäli olet uusi käyttäjä, klikkaa Luo käyttäjätunnus-painiketta.
+Nyt sinulle avautuu näkymä jossa voit luoda itsellesi käyttäjätunnuksen ja salasanan sekä määrittää ikäsi, painosi ja pituutesi. Kun olet valmis, paina tallenna, jolloin pääset takaisin sisäänkirjautumisruutuun.
+
+Kirjauduttuasi sisään sinulle aukeaa näkymä vanhoista harjoituksistasi. Voit klikkaamalla harjoituksen päivämäärää tarkastella vanhoja merkintöjäsi. Ylälaidan valikkopainikkeesta valitsemalla lisää treeni pääset luomaan uuden harjoituksen päiväkirjaasi. Nyt sinulle avautuu näkymä jossa painamalla Lisää liike näppäintä pääset alkuun.
+Kun paina lisää Liike-näppäintä, ohjelma kysyy sinulta harjouituksen päivämäärän. Voit syöttää päivämäärän haluamassasi muodossa, mutta ohjelma kehoittaa muodoksi pp.kk.vvvv.
+Päivämäärän jälkeen ohjelma kysyy liikkeen nimeä, ja tämän jälkeen vuorotellen toistomäärät ja painot. Voit lisätä niin monta sarjaa kun haluat, tyhjäksi jätetty tekstikenttä lopettaa liikkeen lisäämisen. Liikkeen lisäyksen jälkeen lisäämäsi tiedot ilmestyvät ruudulle näkyviin. Voit lisätä niin monta liikettä kuin haluat.
+Painamalla Valmis-painiketta harjoituskertasi tallentuu, ja pääset takaisin päiväkirjanäkymään tarkastelemaan kaikkia harjoituksiasi.
+
+

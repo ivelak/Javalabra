@@ -1,0 +1,18 @@
+Projekti - Maalimanvahvimmat
+
+Rakennekuvaus:
+
+Treenipäiväkirja Maalimanvahvimmat koostuu seuraavista tietomallin luokista:
+
+Liike
+Harjoituskerta
+Harjoituskertarekisteri
+Kayttaja
+Kayttajarekisteri
+
+Kayttajarekisteri nimensä mukaan pitää kirjaa ohjelmaan tunnukset luoneista käyttäjistä.
+Olio tallentaa käyttäjät tekstitiedostoon, sekä pitää itsessään Kayttaja-oliot ArrayList-muodossa.
+Ohjelman käynnistyessä Kayttajarekisteri lukee rekisteritiedoston. Tiedostossa on viitteet Kayttaja-olioihin jotka luokka luo kunkin Kayttaja-olion oman tekstitiedoston sisällön perusteella. Kayttaja-olioa luodessa luodaan myös kunkin käyttäjän Harjoituskertarekisteri-olio. Se on myös tallennettu tekstitiedostoon joka sisältää viitteet kunkin harjoituskerran omaan harjoituskertatiedostoon. Harjoituskertarekisteriä luodessa luetaan ks. rekisteritiedosto, jolloin luotu Hajroituskertarekisteri luo rekisterin mukaiset Harjoituskerta-oliot. kukin Harjoituskerta-olio on tallennettu tekstitiedostoon siesältäen tiedon Liike-olioita varten. Harjoituskertatiedostoa luotaessa tai sitä luettaessa tiedostossa on tallennettuna omille riveille liikkeen nimi sekä toistokerrat että painot.
+
+Ohjelma itsessää teksti- sekä graafisen käyttöliittymän puolella voi luoda uudnen käyttäjän, kirjautua sisään käyttäjänä. tarkastella vanhoja harjoituksia sekä luoda uuden harjoituksen päiväkirjaan. Sovelluksesta puuttuu mahdollisuus muokata tai poistaa harjoituksia.
+
