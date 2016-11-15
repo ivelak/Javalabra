@@ -1,8 +1,11 @@
 Javalabra
 =========
 
-Projekti Maailmanvahvimmat-treenipäiväkirja.
+Tämä on 1. opiskeluvuoteni Ohjelmoinnin harjoitustyö -kurssin repositorio. Kurssin tarkoituksena oli toteuttaa ensimmäistä kertaa itsenäisesti alusta loppuun Java-sovellus.
 
-(En saanut javadocia generoituna näkymään tässä juuressa. html:t löytyy MaailmanVahvimmat/dist/Javadoc)
+Projektin nimi: Maailmanvahvimmat-treenipäiväkirja
+
+Sovellus on tietokoneelle ladattava treenipäiväkirja kuntosaliharjoitteluun.
+
 
 
